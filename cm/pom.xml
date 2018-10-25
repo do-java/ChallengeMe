@@ -25,8 +25,8 @@
 
     <modules>
         <module>cm-model</module>
-        <module>cm-persistence</module>
         <module>cm-common</module>
+        <module>cm-persistence</module>
         <module>cm-biz</module>
         <module>cm-biz-local</module>
         <module>cm-rest</module>
