@@ -14,6 +14,16 @@ public class EchoServiceImpl implements EchoService {
 	private EchoRepository echoRepository;
 
 	@Override
+	public Iterable<Echo> getAllEchos() {
+		return echoRepository.findAll();
+	}
+
+	@Override
+	public Echo getEchoById(Long id) {
+		return echoRepository.findById(id).orElse(null);
+	}
+
+	@Override
 	public String doEcho(String s, int n) {
 		return StringUtils.repeat(s, " ", n);
 	}
@@ -26,15 +36,5 @@ public class EchoServiceImpl implements EchoService {
 		} else {
 			return "Not found";
 		}
-	}
-
-	@Override
-	public Iterable<Echo> getAllEchos() {
-		return echoRepository.findAll();
-	}
-
-	@Override
-	public Echo getEchoById(Long id) {
-		return echoRepository.findById(id).orElse(null);
 	}
 }
