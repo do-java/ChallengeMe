@@ -16,10 +16,10 @@ import java.util.StringJoiner;
 @EntityListeners(AuditingEntityListener.class)
 public class Echo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String value;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String value;
 
 	@CreatedDate
 	private Date createdDate;
