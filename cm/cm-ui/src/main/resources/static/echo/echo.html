@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echo</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+</head>
+<body>
+<div id="app">
+    <h1>Echo</h1>
+
+    <add-echo-form :items='echos'></add-echo-form>
+    <echos-list :items='echos'></echos-list>
+
+</div>
+
+<script src="echo.js"></script>
+</body>
+</html>
