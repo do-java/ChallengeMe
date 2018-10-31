@@ -30,6 +30,7 @@
         <module>cm-biz</module>
         <module>cm-biz-local</module>
         <module>cm-rest</module>
+        <module>cm-ui</module>
         <module>cm-app</module>
     </modules>
 
