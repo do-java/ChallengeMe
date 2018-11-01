@@ -18,9 +18,9 @@ public class UserModel {
 
     private String email;
 
-    private Boolean confirmed;
+    private boolean confirmed;
 
-    private Boolean deleted;
+    private boolean deleted;
 
     private Date firstLogin;
 
@@ -58,19 +58,19 @@ public class UserModel {
         this.email = email;
     }
 
-    public Boolean getConfirmed() {
+    public boolean getConfirmed() {
         return confirmed;
     }
 
-    public void setConfirmed(Boolean confirmed) {
+    public void setConfirmed(boolean confirmed) {
         this.confirmed = confirmed;
     }
 
-    public Boolean getDeleted() {
+    public boolean getDeleted() {
         return deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 
