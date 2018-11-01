@@ -1,7 +1,7 @@
 package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.user.UserService;
-import com.dj.cm.model.entity.User;
+import com.dj.cm.model.entity.UserModel;
 import com.dj.cm.persistence.repo.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Iterable<User> findAllUsers() {
+    public Iterable<UserModel> findAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User getUserById(Long id) {
+    public UserModel getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public UserModel saveUser(UserModel userModel) {
+        return userRepository.save(userModel);
     }
 }
