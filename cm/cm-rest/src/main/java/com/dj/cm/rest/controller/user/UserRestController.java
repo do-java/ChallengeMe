@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
  * <p>
  * GET http://localhost:8080/rest/user/
  * GET http://localhost:8080/rest/user/1
- * fetch('/rest/user', { method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({user_name:'Test User', email:'test@test.com', password:'1234', confirmed: true, deleted: false, id: null}) }).then(result => result.json().then(console.log))
- * fetch('/rest/user/1', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ user_name:'Test User1', email:'test@test.com', password:'1234', confirmed: true, deleted: false, id: 1}) }).then(result => result.json().then(console.log))
+ * fetch('/rest/user', { method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({userName:'Test User', email:'test@test.com', password:'1234', confirmed: true, deleted: false, id: null}) }).then(result => result.json().then(console.log))
+ * fetch('/rest/user/1', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userName:'Test User1', email:'test@test.com', password:'1234', confirmed: true, deleted: false, id: 1}) }).then(result => result.json().then(console.log))
  * fetch('/rest/user/1', { method: 'DELETE' }).then(result => console.log(result))
  *
  */
@@ -30,7 +30,6 @@ public class UserRestController {
 
     @GetMapping("{id}")
     public UserModel getById(@PathVariable Long id){
-
         return userService.getUserById(id);
     }
 
