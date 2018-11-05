@@ -1,4 +1,4 @@
-package com.dj.cm.biz.service.echo.impl;
+package com.dj.cm.biz.service.user.impl;
 
 import com.dj.cm.biz.service.exception.AlreadyExistBizException;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
