@@ -19,15 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Iterable<UserModel> findAllUsers() {
-        Iterable<UserModel> usersList = userRepository.findAll();
-
-        //https://www.baeldung.com/java-iterable-size
-        //Check if Iterable not equals 0
-        if (StreamSupport.stream(usersList.spliterator(), false).count() == 0){
-            throw new NotFoundBizException(" Users Not Found");
-        }else
-            System.out.println(StreamSupport.stream(usersList.spliterator(), false).count());
-        return usersList;
+        return userRepository.findAll();
     }
 
     @Override
@@ -35,7 +27,7 @@ public class UserServiceImpl implements UserService {
         Optional<UserModel> foundUser = userRepository.findById(id);
         if (!foundUser.isPresent()){
             throw new NotFoundBizException("User with id:" + id + " not found");
-        }else
+        }
 
         return foundUser.get();
     }
@@ -44,8 +36,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Long id) {
         Optional<UserModel> foundUser = userRepository.findById(id);
         if (!foundUser.isPresent()){
-            throw new NotFoundBizException("User not found");
+            throw new NotFoundBizException("User with id: " + id + " not found");
         }
+
         userRepository.deleteById(id);
     }
 
@@ -53,17 +46,16 @@ public class UserServiceImpl implements UserService {
     public UserModel createUser(UserModel userModel) {
         if (userRepository.findUserModelByEmail(userModel.getEmail())!= null){
             throw new AlreadyExistBizException("User with Email: " + userModel.getEmail() + " already exist.");
-        }else
+        }
+
         return userRepository.save(userModel);
     }
 
     @Override
     public UserModel updateUser(UserModel userModel) {
-        UserModel userToUpdate = getUserById(userModel.getId());
-        if (userToUpdate == null){
-            throw new NotFoundBizException("User Not Found");
-        }else
-            BeanUtils.copyProperties(userModel, userToUpdate, "id");
+        UserModel userToUpdate = getUserById(userModel.getId()); // Will throw NotFoundBizException if no user by id
+
+        BeanUtils.copyProperties(userModel, userToUpdate, "id");
         return userRepository.save(userToUpdate);
     }
 }
