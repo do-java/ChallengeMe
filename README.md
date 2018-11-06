@@ -14,3 +14,15 @@ ChallengeMe - Application to manage and share challenges
 | cm-common | com.dj.cm.common.util.* | Commonly used utils and tools |
 | cm-model | com.dj.cm.model.entity.* | Data model (Entities and Other basic types) |
 
+### Deploy for Development
+
+1 Start Webpack Dev Server
+```
+$ cd cm-ui
+$ npm start
+```
+
+2 Start Application
+```
+Run com.dj.cm.Application  from IDE or command-line
+```
