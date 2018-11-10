@@ -3,54 +3,64 @@ package com.dj.cm.biz.service.echo.impl;
 import com.dj.cm.biz.service.echo.EchoService;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.model.entity.Echo;
-import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
-@Primary
-public class EchoServiceImpl implements EchoService {
+@Qualifier("inmemory")
+public class EchoServiceInmemoryImpl implements EchoService {
 
-	@Autowired
-	private EchoRepository echoRepository;
+	/**
+	 * Echos data.
+	 */
+	private Map<Long, Echo> data = new HashMap<>();
+
+	private long idCounter = 0;
 
 	@Override
 	public List<Echo> getAllEchos() {
-		return echoRepository.findAll();
+		return new ArrayList<>(data.values());
 	}
 
 	@Override
 	public Echo getEchoById(Long id) {
-		Optional<Echo> echoOptional = echoRepository.findById(id);
-		if (!echoOptional.isPresent()) {
+		Echo echo = data.get(id);
+		if (echo == null) {
 			throw new NotFoundBizException(String.format("Echo with Id: %s not found", id));
 		}
 
-		return echoOptional.get();
+		return echo;
 	}
 
 	@Override
 	public Echo createEcho(Echo echo) {
-		return echoRepository.save(echo);
+		Echo echoToCreate = new Echo();
+		BeanUtils.copyProperties(echo, echoToCreate);
+		echoToCreate.setId(idCounter++);
+
+		data.put(echoToCreate.getId(), echoToCreate);
+
+		return echoToCreate;
 	}
 
 	@Override
 	public Echo updateEcho(Echo echo) {
 		Echo echoToUpdate = getEchoById(echo.getId());
 		BeanUtils.copyProperties(echo, echoToUpdate, "id");
-		return echoRepository.save(echoToUpdate);
+		return echoToUpdate;
 	}
 
 	@Override
 	public void deleteEcho(Long id) {
 		Echo echoToDelete = getEchoById(id);
-		echoRepository.delete(echoToDelete);
+		data.remove(id);
 	}
 
 	@Override
