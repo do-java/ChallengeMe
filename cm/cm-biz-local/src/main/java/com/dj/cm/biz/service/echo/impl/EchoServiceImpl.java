@@ -7,18 +7,21 @@ import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Primary
 public class EchoServiceImpl implements EchoService {
 
 	@Autowired
 	private EchoRepository echoRepository;
 
 	@Override
-	public Iterable<Echo> getAllEchos() {
+	public List<Echo> getAllEchos() {
 		return echoRepository.findAll();
 	}
 
