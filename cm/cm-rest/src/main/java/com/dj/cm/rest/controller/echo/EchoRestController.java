@@ -3,6 +3,7 @@ package com.dj.cm.rest.controller.echo;
 import com.dj.cm.biz.service.echo.EchoService;
 import com.dj.cm.model.entity.Echo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EchoRestController {
 
 	@Autowired
+	@Qualifier("cached")
 	private EchoService echoService;
 
 	@GetMapping
