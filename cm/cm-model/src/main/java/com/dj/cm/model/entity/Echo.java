@@ -27,8 +27,13 @@ public class Echo {
 	@LastModifiedDate
 	private Date modifiedDate;
 
-	protected Echo() {
-	}
+    public Echo() {
+    }
+
+    public Echo(Long id, String value) {
+        this.id = id;
+        this.value = value;
+    }
 
 	public Echo(String echo) {
 		this.value = echo;
