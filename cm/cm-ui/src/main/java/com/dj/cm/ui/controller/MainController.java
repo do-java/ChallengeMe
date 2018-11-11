@@ -11,6 +11,7 @@ public class MainController {
 
 	@GetMapping
 	public String main(Model model) {
+		model.addAttribute("mode", "development");
 		return "index";
 	}
 }

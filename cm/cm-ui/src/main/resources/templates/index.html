@@ -6,7 +6,9 @@
     </head>
     <body>
         <h1>ChallengeMe Application</h1>
+        <p>Mode: <span th:text="${mode}"/></p>
+
         <div id="app"></div>
-        <script src='http://localhost:8000/main.js'></script> <!-- TODO: Add environment variable for production mode scr -->
+        <script th:src="${mode == 'development'} ? 'http://localhost:8000/main.js' : '/js/main.js'"></script>
     </body>
 </html>

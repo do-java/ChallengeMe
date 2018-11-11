@@ -16,4 +16,13 @@
         <version>1.0.0-SHAPSHOT</version>
     </parent>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>
