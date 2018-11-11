@@ -2,15 +2,8 @@
 	<div>
 	   <h2>Echo Page</h2>
 	   <echo-add-form :items="echos"></echo-add-form>
+	   <hr/>
 	   <echo-list :items="echos"></echo-list>
-	   <br/>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
-	   <echo-get :id="11"></echo-get>
    </div>
 </template>
 

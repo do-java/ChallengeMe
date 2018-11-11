@@ -1,7 +1,11 @@
 <template>
-	<div>
-		<input v-model="value" placeholder="Echo Value"/>
-		<button @click="create">Create</button>
+	<div class="form-group row">
+		<div class="col-sm-6">
+			<input class="form-control" v-model="value" placeholder="Echo Value"/>
+		</div>
+		<div class="col">
+			<button class="btn btn-primary"@click="create">Create</button>
+		</div>
 	</div>
 </template>
 

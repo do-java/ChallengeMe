@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 	   <h1>App Component</h1>
 	   <echo-page></echo-page>
    </div>

@@ -1,10 +1,18 @@
 <template>
-	<div>
-		<span>{{item.id}}: {{item.value}}</span>
-		<input v-model="value"/>
-		<button @click="update">Update</button>
-		<button @click="del">X</button>
-		<button @click="doEcho">Do</button>
+	<div class="form-group">
+		<div class="row">
+			<div class="col">{{item.id}}: {{item.value}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<input class="form-control" v-model="value"/>
+			</div>
+			<div class="col">
+				<button class="btn btn-primary" @click="update">Update</button>
+				<button class="btn btn-danger" @click="del">X</button>
+				<button class="btn btn-success" @click="doEcho">Do</button>
+			</div>
+		</div>
 	</div>
 </template>
 
