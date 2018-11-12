@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.slf4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +28,9 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class EchoServiceImplTest {
+
+	@Mock
+	private Logger logger;
 
 	@Mock
 	private EchoRepository repository;
@@ -51,7 +56,6 @@ public class EchoServiceImplTest {
 
 		// When
 		when(repository.findAll()).thenReturn(Arrays.asList(echo1, echo2));
-		when(repository.findById(12L)).thenReturn(Optional.of(echo1));
 		List<Echo> result = service.getAllEchos();
 
 		// Then
