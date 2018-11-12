@@ -9,8 +9,8 @@
 			</div>
 			<div class="col">
 				<button class="btn btn-primary" @click="update">Update</button>
-				<button class="btn btn-danger" @click="del">X</button>
-				<button class="btn btn-success" @click="doEcho">Do</button>
+				<button class="btn btn-primary" @click="del">X</button>
+				<button class="btn btn-primary" @click="doEcho">Do</button>
 			</div>
 		</div>
 	</div>

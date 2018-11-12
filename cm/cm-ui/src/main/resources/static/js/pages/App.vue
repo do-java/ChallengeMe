@@ -1,16 +1,22 @@
 <template>
-	<div class="container">
-	   <h1>App Component</h1>
-	   <echo-page></echo-page>
+	<div>
+		<div class="row">
+		   <div class="col-sm-2"/>
+		   <div class="col-sm-8">
+			   <navigation></navigation>
+			   <router-view/>
+		   </div>
+		   <div class="col-sm-2"/>
+		</div>
    </div>
 </template>
 
 <script>
-   import EchoPage from 'pages/EchoPage.vue'
+   import Navigation from 'components/common/Navigation.vue'
 
    export default {
    		components: {
-			EchoPage
+			Navigation
 		},
    }
 </script>

@@ -1,9 +1,11 @@
 <template>
-	<div>
-	   <h2>Echo Page</h2>
-	   <echo-add-form :items="echos"></echo-add-form>
-	   <hr/>
-	   <echo-list :items="echos"></echo-list>
+	<div class="card">
+	   <h2 class="card-header">Echo Page</h2>
+	   <div class="card-body">
+		   <echo-add-form :items="echos"></echo-add-form>
+		   <hr/>
+		   <echo-list :items="echos"></echo-list>
+		</div>
    </div>
 </template>
 
