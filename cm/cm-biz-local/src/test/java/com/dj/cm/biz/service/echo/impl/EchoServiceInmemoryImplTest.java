@@ -5,13 +5,12 @@ import com.dj.cm.model.entity.Echo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * EchoServiceInmemoryImpl Test.
@@ -93,10 +92,36 @@ public class EchoServiceInmemoryImplTest {
 
 	@Test
 	public void updateEcho() {
+		// Given
+		Echo echo = new Echo(null, "E1");
+
+		// When
+		Echo resultEcho = service.createEcho(echo);
+		Long resultEchoId = resultEcho.getId();
+		final Echo echoToUpdate = new Echo(resultEchoId, "E2");
+		Echo result1 = service.updateEcho(echoToUpdate);
+		Echo result2 = service.getEchoById(resultEchoId);
+
+		// Then
+		assertEquals(resultEchoId, result1.getId());
+		assertEquals("E2", result1.getValue());
+		assertEquals(resultEchoId, result2.getId());
+		assertEquals("E2", result2.getValue());
 	}
 
 	@Test
 	public void deleteEcho() {
+		// Given
+		Echo echo = new Echo(null, "E1");
+
+		// When
+		Echo resultEcho = service.createEcho(echo);
+		Long resultEchoId = resultEcho.getId();
+		service.deleteEcho(resultEchoId);
+		List<Echo> resultList = service.getAllEchos();
+
+		// Then
+		assertTrue(!resultList.contains(resultEcho));
 	}
 
 	@Test
