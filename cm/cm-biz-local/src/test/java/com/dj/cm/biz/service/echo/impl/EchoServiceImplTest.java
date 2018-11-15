@@ -57,7 +57,7 @@ public class EchoServiceImplTest {
 		List<Echo> result = service.getAllEchos();
 
 		// Then
-		verify(repository).findAll();
+		verify(repository).findAllByOrderByIdAsc();
 		assertEquals(2, result.size());
 		assertTrue(result.contains(echo1));
 		assertTrue(result.contains(echo2));

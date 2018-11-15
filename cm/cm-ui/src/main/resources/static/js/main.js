@@ -16,6 +16,8 @@ Vue.use(BootstrapVue)
 
 import HomePage from 'pages/HomePage.vue'
 import EchoPage from 'pages/EchoPage.vue'
+import EchoAddPage from 'pages/EchoAddPage.vue'
+import EchoEditPage from 'pages/EchoEditPage.vue'
 import ChallengePage from 'pages/ChallengePage.vue'
 
 
@@ -32,10 +34,21 @@ const router = new Router({
 	  component: EchoPage
 	},
 	{
-    	  path: '/challenge',
-    	  name: 'Challenge',
-    	  component: ChallengePage
-    	},
+	  path: '/echo/add',
+	  name: 'EchoAdd',
+	  component: EchoAddPage,
+	},
+	{
+	  path: '/echo/:id',
+	  name: 'EchoEdit',
+	  component: EchoEditPage,
+	  props: true
+	},
+	{
+	  path: '/challenge',
+	  name: 'Challenge',
+	  component: ChallengePage
+	},
   ]
 })
 

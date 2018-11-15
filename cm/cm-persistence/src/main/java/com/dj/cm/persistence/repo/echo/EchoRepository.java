@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface EchoRepository extends CrudRepository<Echo, Long> {
 	List<Echo> findAll();
+	List<Echo> findAllByOrderByIdAsc();
 }

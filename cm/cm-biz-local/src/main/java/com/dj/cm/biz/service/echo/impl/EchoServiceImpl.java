@@ -26,7 +26,7 @@ public class EchoServiceImpl implements EchoService {
 
 	@Override
 	public List<Echo> getAllEchos() {
-		return echoRepository.findAll();
+		return echoRepository.findAllByOrderByIdAsc();
 	}
 
 	@Override
