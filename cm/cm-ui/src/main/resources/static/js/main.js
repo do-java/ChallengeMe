@@ -1,17 +1,25 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import Router from 'vue-router'
+
 import BootstrapVue from "bootstrap-vue"
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+import Datetime from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+
 import App from 'pages/App.vue'
+
 import $ from 'jquery'
 window.jQuery = $;
 window.$ = $;
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 
 Vue.use(VueResource)
 Vue.use(Router)
 Vue.use(BootstrapVue)
+Vue.use(Datetime)
 
 
 import HomePage from 'pages/HomePage.vue'

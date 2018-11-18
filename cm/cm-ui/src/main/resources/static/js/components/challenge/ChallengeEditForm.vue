@@ -51,13 +51,29 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Start Date</label>
 			<div class="col">
-				<input class="form-control" v-model="challenge.startDate" placeholder="Start Date"/>
+				<datetime
+					v-model="challenge.startDate"
+					type="datetime"
+					placeholder="Select Date"
+					input-class="form-control col-sm-4"
+					format="yyyy-MM-dd HH:mm"
+					auto="true"
+					>
+				</datetime>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">End Date</label>
 			<div class="col">
-				<input class="form-control" v-model="challenge.endDate" placeholder="End Date"/>
+				<datetime
+					v-model="challenge.endDate"
+					type="datetime"
+					placeholder="Select Date"
+					input-class="form-control col-sm-4"
+					format="yyyy-MM-dd HH:mm"
+					auto="true"
+					>
+				</datetime>
 			</div>
 		</div>
 

@@ -1,7 +1,5 @@
 package com.dj.cm.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -71,10 +69,8 @@ public class Challenge implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date startDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date endDate;
 
     public Challenge(){
