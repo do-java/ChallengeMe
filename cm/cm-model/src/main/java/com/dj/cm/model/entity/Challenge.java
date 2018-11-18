@@ -1,6 +1,14 @@
 package com.dj.cm.model.entity;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +18,7 @@ public class Challenge implements Serializable {
     /**
      * Варианты доступа к челленджу
      */
-    public enum AcessEnum {
+    public enum AccessEnum {
         PRIVATE,
         PUBLIC,
         PROTECTED;      //друзья друзей? или пользователи определенной группы
@@ -41,14 +49,14 @@ public class Challenge implements Serializable {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private AcessEnum acess;
+    private AccessEnum access;
 
-    public AcessEnum getAcess() {
-        return acess;
+    public AccessEnum getAccess() {
+        return access;
     }
 
-    public void setAcess(AcessEnum acess) {
-        this.acess = acess;
+    public void setAccess(AccessEnum access) {
+        this.access = access;
     }
 
     public StatusEnum getStatus() {
@@ -63,37 +71,26 @@ public class Challenge implements Serializable {
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date endDate;
 
     public Challenge(){
 
     }
 
-    public Challenge(String name, String type, String description, int priority, int maxMembers, AcessEnum acess, StatusEnum status, Date startDate, Date endDate) {
+    public Challenge(String name, String type, String description, int priority, int maxMembers, AccessEnum access, StatusEnum status, Date startDate, Date endDate) {
         this.name = name;
         this.type = type;
         this.description = description;
         this.priority = priority;
         this.maxMembers = maxMembers;
-        this.acess = acess;
+        this.access = access;
         this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Challenge{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", description='" + description + '\'' +
-                ", priority=" + priority +
-                ", maxMembers=" + maxMembers +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
     }
 
     public Long getId() {
@@ -154,5 +151,22 @@ public class Challenge implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Challenge{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", type='").append(type).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", priority=").append(priority);
+        sb.append(", maxMembers=").append(maxMembers);
+        sb.append(", access=").append(access);
+        sb.append(", status=").append(status);
+        sb.append(", startDate=").append(startDate);
+        sb.append(", endDate=").append(endDate);
+        sb.append('}');
+        return sb.toString();
     }
 }

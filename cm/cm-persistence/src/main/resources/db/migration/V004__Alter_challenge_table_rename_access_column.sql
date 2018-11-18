@@ -1,0 +1,1 @@
+ALTER TABLE challenge RENAME COLUMN "acess" TO "access";

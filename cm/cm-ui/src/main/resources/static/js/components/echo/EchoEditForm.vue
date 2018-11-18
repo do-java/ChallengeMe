@@ -40,11 +40,14 @@
 		computed: {
 			isCreateMode: function() {
 				return this.echo.id == null;
+			},
+			restApi: function() {
+				return this.$resource('/rest/echos{/id}')
 			}
 		},
 		methods: {
 			create: function() {
-				this.$resource('/rest/echos{/id}').save({}, this.echo).then(result =>
+				this.restApi.save({}, this.echo).then(result =>
 					result.json().then(data => {
 						this.echo = data;
 						this.$router.push({ name: 'EchoEdit', params: {id: this.echo.id}});
@@ -52,7 +55,7 @@
 				)
 			},
 			createAndExit: function() {
-				this.$resource('/rest/echos{/id}').save({}, this.echo).then(result =>
+				this.restApi.save({}, this.echo).then(result =>
 					result.json().then(data => {
 						this.echo =  data;
 						this.$router.push({name: 'Echo'});
@@ -60,7 +63,7 @@
 				)
 			},
 			createAndAdd: function() {
-				this.$resource('/rest/echos{/id}').save({}, this.echo).then(result =>
+				this.restApi.save({}, this.echo).then(result =>
 					result.json().then(data => {
 						this.echo = {};
 						this.$router.push({name: 'EchoAdd'});
@@ -68,14 +71,14 @@
 				)
 			},
 			update: function() {
-				this.$resource('/rest/echos{/id}').update({id: this.echo.id}, this.echo).then(result =>
+				this.restApi.update({id: this.echo.id}, this.echo).then(result =>
 					result.json().then(data => {
 						this.echo = data
 					})
 				)
 			},
 			updateAndExit: function() {
-				this.$resource('/rest/echos{/id}').update({id: this.echo.id}, this.echo).then(result =>
+				this.restApi.update({id: this.echo.id}, this.echo).then(result =>
 					result.json().then(data => {
 						this.echo = data;
 						this.$router.push({name: 'Echo'});

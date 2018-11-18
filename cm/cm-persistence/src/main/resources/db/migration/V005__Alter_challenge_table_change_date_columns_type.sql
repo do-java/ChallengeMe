@@ -1,0 +1,2 @@
+ALTER TABLE challenge ALTER COLUMN "start_date" TYPE TIMESTAMP;
+ALTER TABLE challenge ALTER COLUMN "end_date" TYPE TIMESTAMP;
