@@ -39,13 +39,25 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Access</label>
 			<div class="col">
-				<input class="form-control" v-model="challenge.access" placeholder="Access">
+				<select class="form-control" v-model="challenge.access">
+                  <option disabled value="">Select Access Type</option>
+                  <option>PRIVATE</option>
+                  <option>PUBLIC</option>
+                  <option>PROTECTED</option>
+                </select>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Status</label>
 			<div class="col">
-				<input class="form-control" v-model="challenge.status" placeholder="Status"/>
+				<select class="form-control" v-model="challenge.status">
+				  <option disabled value="">Select Status</option>
+				  <option>ACTIVE</option>
+				  <option>BLOCKED</option>
+				  <option>DEADLINE</option>
+				  <option>FINISHED</option>
+				  <option>ARCHIVATED</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group row">
