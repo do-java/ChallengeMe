@@ -2,9 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import Router from 'vue-router'
 
-import BootstrapVue from "bootstrap-vue"
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap-cm.scss'
 
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
@@ -18,7 +16,6 @@ window.$ = $;
 
 Vue.use(VueResource)
 Vue.use(Router)
-Vue.use(BootstrapVue)
 Vue.use(Datetime)
 
 

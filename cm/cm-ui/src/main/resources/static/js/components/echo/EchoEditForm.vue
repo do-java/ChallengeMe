@@ -16,12 +16,12 @@
 			<div class="col-sm-2">
 			</div>
 			<div class="col">
-				<router-link class="btn btn-primary mr-sm-5" to="/echo">Back</router-link>
-				<button v-if="isCreateMode" class="btn btn-primary" @click="create">Create</button>
-				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndExit">Create And Exit</button>
-				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndAdd">Create And Add</button>
-				<button v-if="!isCreateMode" class="btn btn-primary" @click="update">Update</button>
-				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndExit">Update And Exit</button>
+				<router-link class="btn-cm mr-sm-5" to="/echo">Back</router-link>
+				<button v-if="isCreateMode" class="btn btn-primary cm-btn" @click="create">Create</button>
+				<button v-if="isCreateMode" class="btn btn-primary cm-btn" @click="createAndExit">Create And Exit</button>
+				<button v-if="isCreateMode" class="btn btn-primary cm-btn" @click="createAndAdd">Create And Add</button>
+				<button v-if="!isCreateMode" class="btn btn-primary cm-btn" @click="update">Update</button>
+				<button v-if="!isCreateMode" class="btn btn-primary cm-btn" @click="updateAndExit">Update And Exit</button>
 			</div>
 		</div>
 	</div>

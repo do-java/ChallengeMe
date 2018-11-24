@@ -52,6 +52,7 @@ module.exports = {
   resolve: {
       modules: [
           path.join(__dirname, 'src', 'main', 'resources', 'static', 'js'),
+          path.join(__dirname, 'src', 'main', 'resources', 'static', 'scss'),
           path.join(__dirname, 'node_modules'),
       ],
   }

@@ -1,0 +1,38 @@
+
+//
+// Application Variables
+//
+
+$cm-color-primary: #b3cfdb;
+$cm-font-family-base: "Arial Regular";
+
+
+
+//
+// Bootstrap customization
+//
+
+$enable-rounded: false;
+$enable-shadows: true;
+$font-family-base: $cm-font-family-base;
+
+$theme-colors: (
+	"primary": $cm-color-primary
+);
+
+// NOTE: To optimize css size, we can import only bootstrap modules we need
+@import 'bootstrap/scss/bootstrap.scss';
+
+
+
+//
+// Application Styles
+//
+
+.cm-logo {
+	font-family: "Ovo";
+
+	.cm-logo-me {
+		color: white;
+	}
+}
