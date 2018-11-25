@@ -26,6 +26,13 @@ $theme-colors: (
 // NOTE: To optimize css size, we can import only bootstrap modules we need
 @import 'bootstrap/scss/bootstrap.scss';
 
+.btn-primary {
+    @include button-variant(theme-color("primary"), lighten(theme-color("primary"), 20%));
+}
+
+.btn-outline-primary {
+    @include button-outline-variant(darken(theme-color("primary"), 20%));
+}
 
 
 //
