@@ -34,7 +34,6 @@ import java.util.List;
 public class EchoRestController {
 
 	@Autowired
-	@Qualifier("cached")
 	private EchoService echoService;
 
 	@GetMapping

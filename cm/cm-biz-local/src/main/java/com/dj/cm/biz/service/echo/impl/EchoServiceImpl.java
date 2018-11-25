@@ -2,6 +2,10 @@ package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.echo.EchoService;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
+import com.dj.cm.event.echo.EchoCreatedEvent;
+import com.dj.cm.event.echo.EchoDeletedEvent;
+import com.dj.cm.event.echo.EchoUpdatedEvent;
+import com.dj.cm.event.util.EventUtil;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +28,9 @@ public class EchoServiceImpl implements EchoService {
 	@Autowired
 	private EchoRepository echoRepository;
 
+	@Autowired
+	private EventUtil eventUtil;
+
 	@Override
 	public List<Echo> getAllEchos() {
 		return echoRepository.findAllByOrderByIdAsc();
@@ -43,20 +50,31 @@ public class EchoServiceImpl implements EchoService {
 
 	@Override
 	public Echo createEcho(Echo echo) {
-		return echoRepository.save(echo);
+		Echo result = echoRepository.save(echo);
+		eventUtil.sendEchoEvent(new EchoCreatedEvent(result));
+		return result;
 	}
 
 	@Override
 	public Echo updateEcho(Echo echo) {
 		Echo echoToUpdate = getEchoById(echo.getId());
+		Echo echoToUpdateCopy = new Echo(echoToUpdate);
 		BeanUtils.copyProperties(echo, echoToUpdate, "id");
-		return echoRepository.save(echoToUpdate);
+		Echo result = echoRepository.save(echoToUpdate);
+
+		if (!echoToUpdateCopy.equals(result)) {
+			// Send event if entity updated
+			eventUtil.sendEchoEvent(new EchoUpdatedEvent(echoToUpdateCopy, result));
+		}
+
+		return result;
 	}
 
 	@Override
 	public void deleteEcho(Long id) {
 		Echo echoToDelete = getEchoById(id);
 		echoRepository.delete(echoToDelete);
+		eventUtil.sendEchoEvent(new EchoDeletedEvent(echoToDelete));
 	}
 
 	@Override
