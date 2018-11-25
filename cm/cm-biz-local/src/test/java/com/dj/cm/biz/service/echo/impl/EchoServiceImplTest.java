@@ -53,7 +53,7 @@ public class EchoServiceImplTest {
 
 
 		// When
-		when(repository.findAll()).thenReturn(Arrays.asList(echo1, echo2));
+		when(repository.findAllByOrderByIdAsc()).thenReturn(Arrays.asList(echo1, echo2));
 		List<Echo> result = service.getAllEchos();
 
 		// Then
