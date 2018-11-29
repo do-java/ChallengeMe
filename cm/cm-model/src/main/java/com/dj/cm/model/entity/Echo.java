@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Echo {
+public class Echo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,10 @@ public class Echo {
     public Echo(Long id, String value) {
         this.id = id;
         this.value = value;
+    }
+
+    public Echo(Echo source) {
+        this(source.getId(), source.getValue());
     }
 
     public Echo(String echo) {

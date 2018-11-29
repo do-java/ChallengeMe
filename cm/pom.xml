@@ -28,6 +28,7 @@
         <module>cm-common</module>
         <module>cm-persistence</module>
         <module>cm-biz</module>
+        <module>cm-event</module>
         <module>cm-biz-local</module>
         <module>cm-rest</module>
         <module>cm-ui</module>
