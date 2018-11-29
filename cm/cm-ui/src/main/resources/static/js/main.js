@@ -69,6 +69,7 @@ const router = new Router({
 	  component: ChallengeEditPage,
 	  props: true
 	},
+
   ]
 })
 
