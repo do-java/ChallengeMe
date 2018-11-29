@@ -14,14 +14,19 @@ import org.springframework.stereotype.Component;
 public class EventUtil {
 
 	@Autowired
-	AmqpTemplate amqpTemplate;
+	private AmqpTemplate amqpTemplate;
+
+	@Autowired
+	private EventConfig eventConfig;
 
 	public void sendEchoEvent(EchoEvent event) {
 		sendEvent(EventConfig.ECHO_EXCHANGE_NAME, event);
 	}
 
 	private void sendEvent(String exchangeName, Event event) {
-		amqpTemplate.convertAndSend(exchangeName, "", event);
+		if (eventConfig.isEventEnabled()) {
+			amqpTemplate.convertAndSend(exchangeName, "", event);
+		}
 	}
 
 }

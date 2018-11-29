@@ -9,10 +9,13 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("event.properties")
 public class EventConfig {
 
 	//
@@ -23,10 +26,20 @@ public class EventConfig {
 	public static final String ECHO_CLIENT_QUEUE_NAME = ECHO_EXCHANGE_NAME + ".client";
 
 
+	@Value("${event.enabled:false}") // From application.properties
+	private boolean eventEnabled;
+
+	@Value("${event.rabbitmq.hostname}")
+	private String eventHostname;
+
+	public boolean isEventEnabled() {
+		return eventEnabled;
+	}
+
 	@Bean
 	public ConnectionFactory connectionFactory() {
 		CachingConnectionFactory connectionFactory =
-				new CachingConnectionFactory("localhost");
+				new CachingConnectionFactory(eventHostname);
 		return connectionFactory;
 	}
 
