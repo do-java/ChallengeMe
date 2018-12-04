@@ -69,7 +69,7 @@
 					placeholder="Select Date"
 					input-class="form-control col-sm-4"
 					format="yyyy-MM-dd HH:mm"
-					auto="true"
+					auto
 					>
 				</datetime>
 			</div>
@@ -83,7 +83,7 @@
 					placeholder="Select Date"
 					input-class="form-control col-sm-4"
 					format="yyyy-MM-dd HH:mm"
-					auto="true"
+					auto
 					>
 				</datetime>
 			</div>
