@@ -4,8 +4,8 @@
 			<input class="form-control" v-model="value" placeholder="Echo Value"/>
 		</div>
 		<div class="col">
-			<button class="btn btn-primary" @click="create">Create</button>
-			<router-link class="btn btn-primary" to="/echo/add">Create on New Page</router-link>
+			<button class="btn btn-primary" @click="create">Add</button>
+			<router-link class="btn btn-primary" to="/echo/add">Add on New Page</router-link>
 		</div>
 	</div>
 </template>

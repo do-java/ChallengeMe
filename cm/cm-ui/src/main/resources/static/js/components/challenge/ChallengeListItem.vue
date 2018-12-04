@@ -1,16 +1,28 @@
 <template>
-	<div class="form-group">
-		<div class="row">
-			<div class="col">{{item.id}}: {{item.value}}</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<input class="form-control" v-model="name"/>
+	<div class="card mb-4 shadow">
+		<div class="card-body">
+			<div class="row">
+				<div class="col">
+					<router-link class="text-dark" :to="{ name: 'ChallengeEdit', params: {id: item.id}}"><b>[{{item.id}}] {{item.name}}</b></router-link>
+				</div>
 			</div>
-			<div class="col">
-				<button class="btn btn-primary" @click="update">Update</button>
-				<button class="btn btn-primary" @click="del">X</button>
-				<router-link class="btn btn-primary" :to="{ name: 'ChallengeEdit', params: {id: item.id}}">Edit</router-link>
+			<div class="row">
+				<div class="col">
+					<b>Description:</b> {{item.description}}</b>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<b>Timeline:</b> {{item.startDate}} - {{item.endDate}}</b>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="float-right">
+						<button class="btn btn-primary btn-sm" @click="del">X</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -27,15 +39,6 @@
 			}
 		},
 		methods: {
-			update: function() {
-				var challengeToUpdate = {id: this.item.id, value: this.value};
-				this.$resource('/rest/challenges{/id}').update({id: this.item.id}, challengeToUpdate).then(result =>
-					result.json().then(data => {
-						this.item.name = data.name;
-						this.name = data.name;
-					})
-				)
-			},
 			del: function() {
 				this.$resource('/rest/challenges{/id}').delete({id: this.item.id}).then(result => {
 					this.items.splice($.inArray(this.item, this.items), 1)

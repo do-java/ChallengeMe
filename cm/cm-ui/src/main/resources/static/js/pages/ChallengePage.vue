@@ -2,23 +2,19 @@
 	<div class="card">
 	   <h2 class="card-header">Challenge Page</h2>
 	   <div class="card-body">
-		      <challenge-add-form :items="challenges"></challenge-add-form>
-           		   <hr/>
-           	<challenge-list :items="challenges"></challenge-list>
+			<router-link class="btn btn-primary" to="/challenge/add">Add</router-link>
+			<hr/>
+			<challenge-list :items="challenges"></challenge-list>
 		</div>
    </div>
 </template>
 
 <script>
-import ChallengeList from 'components/challenge/ChallengeList.vue'
-   import ChallengeAddForm from 'components/challenge/ChallengeAddForm.vue'
-   import ChallengeGet from 'components/challenge/ChallengeGet.vue'
+	import ChallengeList from 'components/challenge/ChallengeList.vue'
 
    export default {
 		components: {
 			ChallengeList,
-			ChallengeAddForm,
-			ChallengeGet
 		},
 		data: function() {
 			return {

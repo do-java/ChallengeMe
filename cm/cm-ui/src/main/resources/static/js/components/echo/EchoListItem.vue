@@ -9,9 +9,9 @@
 			</div>
 			<div class="col">
 				<button class="btn btn-primary" @click="update">Update</button>
-				<button class="btn btn-primary" @click="del">X</button>
-				<button class="btn btn-primary" @click="doEcho">Do</button>
 				<router-link class="btn btn-primary" :to="{ name: 'EchoEdit', params: {id: item.id}}">Edit</router-link>
+				<button class="btn btn-primary" @click="doEcho">Do</button>
+				<button class="btn btn-primary" @click="del">X</button>
 			</div>
 		</div>
 	</div>
