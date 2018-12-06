@@ -53,3 +53,9 @@ $theme-colors: (
 	background: url(/img/brush-stroke.svg);
 	background-size: 100% 100%;
 }
+
+// datetime customization
+.vdatetime-popup__header,
+.vdatetime-calendar__month__day--selected > span > span {
+	background: darken(theme-color("primary"), 20%) !important;
+}
