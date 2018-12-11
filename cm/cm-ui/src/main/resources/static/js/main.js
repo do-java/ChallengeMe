@@ -7,10 +7,6 @@ import 'bootstrap-cm.scss'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 import App from 'pages/App.vue'
 
 import $ from 'jquery'
@@ -32,10 +28,6 @@ import EchoEditPage from 'pages/EchoEditPage.vue'
 import ChallengePage from 'pages/ChallengePage.vue'
 import ChallengeAddPage from 'pages/ChallengeAddPage.vue'
 import ChallengeEditPage from 'pages/ChallengeEditPage.vue'
-
-
-library.add(faCoffee)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
 const router = new Router({
