@@ -7,6 +7,8 @@ import 'bootstrap-cm.scss'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 
+import '@fortawesome/fontawesome-free/js/all.js'
+
 import App from 'pages/App.vue'
 
 import $ from 'jquery'
