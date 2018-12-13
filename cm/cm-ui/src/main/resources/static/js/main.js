@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import Router from 'vue-router'
+import { DateTime } from "luxon";
 
 import 'bootstrap-cm.scss'
 
@@ -19,6 +20,14 @@ window.$ = $;
 Vue.use(VueResource)
 Vue.use(Router)
 Vue.use(Datetime)
+
+
+// Filters
+Vue.filter('formatDateTime', function(value) {
+  if (value) {
+    return DateTime.fromISO(value).toFormat('yyyy-MM-dd HH:mm');
+  }
+})
 
 
 import HomePage from 'pages/HomePage.vue'

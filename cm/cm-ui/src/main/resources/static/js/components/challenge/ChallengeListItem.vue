@@ -1,7 +1,7 @@
 <template>
 	<div class="card mb-4 shadow">
 		<div class="card-body">
-			<div class="row">
+			<div class="row mb-2">
 				<div class="col">
 					<router-link class="text-dark" :to="{ name: 'ChallengeEdit', params: {id: item.id}}"><b>[{{item.id}}] {{item.name}}</b></router-link>
 				</div>
@@ -13,7 +13,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<b>Timeline:</b> {{item.startDate}} - {{item.endDate}}</b>
+					<b>Timeline:</b> {{item.startDate | formatDateTime}} - {{item.endDate | formatDateTime}}</b>
 				</div>
 			</div>
 
