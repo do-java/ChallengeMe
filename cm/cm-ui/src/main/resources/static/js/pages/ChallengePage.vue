@@ -1,20 +1,45 @@
 <template>
-	<div class="card">
-	   <h2 class="card-header">Challenge Page</h2>
-	   <div class="card-body">
-			<router-link class="btn btn-primary" to="/challenge/add">Add</router-link>
-			<hr/>
-			<challenge-list :items="challenges"></challenge-list>
+	<div class="row">
+		<div class="col-3">
+			<div class="container shadow">
+				<challenge-filter></challenge-filter>
+			</div>
 		</div>
+
+		<div class="col">
+			<div class="row mb-2">
+				<div class="col">
+					<div class="input-group input-group-sm">
+						<input class="form-control" placeholder="Quick search..">
+						<div class="input-group-append">
+							<div class="input-group-text"><i class="fas fa-search"></i></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-1">
+					<router-link class="btn btn-primary btn-sm float-right" to="/challenge/add"><i class="fas fa-plus"></i></router-link>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<challenge-list :items="challenges"></challenge-list>
+				</div>
+			</div>
+		</div>
+		<div class="col-2"></div>
    </div>
 </template>
 
 <script>
 	import ChallengeList from 'components/challenge/ChallengeList.vue'
+	import ChallengeFilter from 'components/challenge/ChallengeFilter.vue'
 
    export default {
 		components: {
 			ChallengeList,
+			ChallengeFilter,
 		},
 		data: function() {
 			return {

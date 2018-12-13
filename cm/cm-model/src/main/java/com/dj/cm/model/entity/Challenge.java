@@ -28,7 +28,6 @@ public class Challenge implements Serializable {
     public enum StatusEnum {
         ACTIVE,         //действующий, без текущего дедлайна
         BLOCKED,        // заблокированный администраторами/модираторами
-        DEADLINE,       // до завершения осталось менее 15% от общей продолжительности (или, напр, 1 день)
         FINISHED,       // завершенный, не в архиве
         ARCHIVATED;     // в архиве
     }
