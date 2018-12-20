@@ -6,9 +6,6 @@
         <title>ChallengeMe</title>
     </head>
     <body>
-        <!--<h1>ChallengeMe Application</h1>-->
-        <!--<p>Mode: <span th:text="${mode}"/></p>-->
-
         <div id="app"></div>
         <script th:src="${mode == 'development'} ? 'http://localhost:8000/main.js' : '/js/main.js'"></script>
     </body>

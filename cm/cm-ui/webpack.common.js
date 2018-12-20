@@ -1,18 +1,9 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'source-map',
   entry: path.join(__dirname, 'src', 'main', 'resources', 'static', 'js', 'main.js'),
-  devServer: {
-    contentBase: './dist',
-    compress: true,
-    port: 8000,
-    allowedHosts: [
-      'localhost:8080'
-    ]
-  },
   module: {
     rules: [
       {
@@ -47,6 +38,7 @@ module.exports = {
     ]
   },
   plugins: [
+  	new CleanWebpackPlugin(),
     new VueLoaderPlugin()
   ],
   resolve: {
