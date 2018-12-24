@@ -10,7 +10,7 @@
 			<div class="row mb-2">
 				<div class="col">
 					<div class="input-group input-group-sm">
-						<input class="form-control" placeholder="Quick search..">
+						<input class="form-control" v-model="filter.searchQuery" placeholder="Quick search..">
 						<div class="input-group-append">
 							<div class="input-group-text"><i class="fas fa-search"></i></div>
 						</div>
@@ -24,7 +24,7 @@
 
 			<div class="row">
 				<div class="col">
-					<challenge-list :items="challenges"></challenge-list>
+					<challenge-list :items="filteredChallenges"></challenge-list>
 				</div>
 			</div>
 		</div>
@@ -43,7 +43,26 @@
 		},
 		data: function() {
 			return {
-				challenges: []
+				challenges: [],
+				filter: {
+					searchQuery: ''
+				}
+			}
+		},
+		computed: {
+			filteredChallenges() {
+				return this.challenges.filter(item => {
+					const query = this.filter.searchQuery.toLowerCase();
+
+					if (!query) { // Empty search query
+						return true;
+					}
+
+					return item.id == query
+						|| item.name.toLowerCase().includes(query)
+						|| item.description.toLowerCase().includes(query);
+
+				});
 			}
 		},
 		created: function () {
