@@ -39,10 +39,20 @@
 				</select>
 			</div>
 
+			<div class="form-group">
+				<b>Shown:</b> {{filteredItems.length}} of {{items.length}}</b>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	export default {
+		props: {
+		  filter: Object,
+		  items: Array,
+		  filteredItems: Array
+		},
 
+	}
 </script>

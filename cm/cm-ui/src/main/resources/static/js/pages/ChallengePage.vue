@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-3">
 			<div class="container shadow">
-				<challenge-filter></challenge-filter>
+				<challenge-filter :filter="filter" :items="challenges" :filteredItems="filteredChallenges"></challenge-filter>
 			</div>
 		</div>
 
