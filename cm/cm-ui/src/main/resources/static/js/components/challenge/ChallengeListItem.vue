@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="float-right">
-						<button class="btn btn-primary btn-sm" @click="del">X</button>
+						<button class="btn btn-primary btn-sm" @click="del"><i class="fas fa-minus"></i></button>
 					</div>
 				</div>
 			</div>
