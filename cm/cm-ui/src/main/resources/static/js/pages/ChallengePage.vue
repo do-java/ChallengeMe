@@ -1,12 +1,17 @@
 <template>
 	<div class="row">
-		<div class="col-3">
-			<div class="container shadow">
+		<div class="col-md-3">
+			<div class="container shadow mb-2">
 				<challenge-filter :filter="filter" :items="challenges" :filteredItems="filteredChallenges"></challenge-filter>
 			</div>
 		</div>
-
-		<div class="col">
+		<div class="col-md-2 order-md-last">
+			<div class="container shadow mb-2 pt-3">
+				<challenge-ordering :orderProp="filter.order" v-on:order-updated="orderUpdated"></challenge-ordering>
+			</div>
+		</div>
+		<div class="col-md px-md-0">
+			<div class="container shadow mb-2 pt-3">
 			<div class="row mb-2">
 				<div class="col">
 					<div class="input-group input-group-sm">
@@ -27,10 +32,6 @@
 					<challenge-list :items="filteredChallenges"></challenge-list>
 				</div>
 			</div>
-		</div>
-		<div class="col-2">
-			<div class="container shadow">
-				<challenge-ordering :orderProp="filter.order" v-on:order-updated="orderUpdated"></challenge-ordering>
 			</div>
 		</div>
    </div>
