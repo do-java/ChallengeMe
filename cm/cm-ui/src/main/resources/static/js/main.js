@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { DateTime } from 'luxon'
 
+import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap-cm.scss'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'

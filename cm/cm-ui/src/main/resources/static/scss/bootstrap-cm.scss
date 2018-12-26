@@ -49,7 +49,7 @@ $theme-colors: (
 	}
 }
 
-.cm-highlight {
+.cm-highlight>span {
 	background: url(/img/brush-stroke.svg);
 	background-size: 100% 100%;
 }
