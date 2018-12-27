@@ -9,6 +9,7 @@ import 'vue-datetime/dist/vue-datetime.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
 import router from './router/router';
+import store from './store/store'
 import App from 'pages/App.vue'
 
 import $ from 'jquery'
@@ -28,6 +29,7 @@ Vue.filter('formatDateTime', function(value) {
 
 
 new Vue({
+	store,
 	router,
     el: '#app',
     render: h => h(App),

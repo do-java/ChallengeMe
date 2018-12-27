@@ -15,7 +15,7 @@
 			<div class="row mb-2">
 				<div class="col">
 					<div class="input-group input-group-sm">
-						<input class="form-control" v-model="filter.searchQuery" placeholder="Quick search..">
+						<input class="form-control" v-model="filterSearchQuery" placeholder="Quick search..">
 						<div class="input-group-append">
 							<div class="input-group-text"><i class="fas fa-search"></i></div>
 						</div>
@@ -52,20 +52,14 @@
 		},
 		data: function() {
 			return {
-				challenges: [],
-				filter: {
-					searchQuery: '',
-					order: {
-						by: 'id',
-						direction: 'desc'
-					}
-				}
+				challenges: []
 			}
 		},
 		computed: {
 			filteredChallenges() {
+				var filter = this.filter;
 				var filtered = this.challenges.filter(item => {
-					const query = this.filter.searchQuery.toLowerCase();
+					const query = filter.searchQuery.toLowerCase();
 
 					if (!query) { // Empty search query
 						return true;
@@ -77,10 +71,21 @@
 
 				});
 
-				var sorted = _.orderBy(filtered, this.filter.order.by, this.filter.order.direction);
+				var sorted = _.orderBy(filtered, filter.order.by, filter.order.direction);
 
 				return sorted;
-			}
+			},
+			filter() {
+				return this.$store.state.challenge.filter;
+			},
+			filterSearchQuery: {
+                get () {
+                  return this.filter.searchQuery
+                },
+                set (value) {
+                  this.$store.commit('updateChallengeFilter', {searchQuery: value});
+                }
+              }
 		},
 		created: function () {
 			this.$resource('/rest/challenges{/id}').get().then(result =>
@@ -91,7 +96,7 @@
 		},
 		methods: {
             orderUpdated: function(data) {
-            	this.filter.order = data;
+            	this.$store.commit('updateChallengeFilter', {order: data});
             }
 		}
    }

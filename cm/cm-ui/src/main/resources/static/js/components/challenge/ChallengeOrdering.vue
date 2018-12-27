@@ -3,7 +3,7 @@
 		<div class="col">
 			<div class="form-group">
 				<label>OrderBy</label>
-				<select v-model="orderValue" v-on:change="orderUpdated" class="form-control form-control-sm">
+				<select v-model="orderValue" @change="orderUpdated" class="form-control form-control-sm">
 					<option value='{"by":"id","direction":"asc"}'>Id Asc</option>
 					<option value='{"by":"id","direction":"desc"}'>Id Desc</option>
 					<option value='{"by":"name","direction":"asc"}'>Name Asc</option>
@@ -31,8 +31,8 @@
 		methods: {
 			orderUpdated: function() {
 				this.$emit('order-updated', JSON.parse(this.orderValue));
-			},
-
+			}
 		}
+
 	}
 </script>
