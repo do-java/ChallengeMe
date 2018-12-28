@@ -21,10 +21,10 @@ export default new Vuex.Store({
   	* Usage: this.$store.commit('updateChallengeFilter', {filterField1: newValue, filterField2: newValue, ...}
   	*/
     updateChallengeFilter(state, payload) {
-       if (payload.searchQuery) {
+       if (typeof payload.searchQuery != 'undefined') {
        		state.challenge.filter.searchQuery = payload.searchQuery;
        }
-       if (payload.order) {
+       if (typeof payload.order != 'undefined') {
        		state.challenge.filter.order = payload.order;
        }
     }
