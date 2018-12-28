@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="container shadow mb-2">
-				<challenge-filter :filter="filter" :items="challenges" :filteredItems="filteredChallenges"></challenge-filter>
+				<challenge-filter :items="challenges" :filteredItems="filteredChallenges"></challenge-filter>
 			</div>
 		</div>
 		<div class="col-md-2 order-md-last">
@@ -59,16 +59,31 @@
 			filteredChallenges() {
 				var filter = this.filter;
 				var filtered = this.challenges.filter(item => {
-					const query = filter.searchQuery.toLowerCase();
 
-					if (!query) { // Empty search query
-						return true;
+					// Query
+					const query = filter.searchQuery.toLowerCase();
+					if (query
+							&& item.id != query
+							&& !item.name.toLowerCase().includes(query)
+							&& !item.description.toLowerCase().includes(query)) {
+						return false;
 					}
 
-					return item.id == query
-						|| item.name.toLowerCase().includes(query)
-						|| item.description.toLowerCase().includes(query);
+					if (filter.active && item.status != 'ACTIVE') {
+						return false;
+					}
 
+					// Access
+					if (filter.access && item.access != filter.access) {
+						return false;
+					}
+
+					// Type
+					if (filter.type && item.type.toLowerCase() != filter.type.toLowerCase()) {
+						return false;
+					}
+
+					return true;
 				});
 
 				var sorted = _.orderBy(filtered, filter.order.by, filter.order.direction);

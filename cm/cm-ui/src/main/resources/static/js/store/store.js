@@ -12,7 +12,10 @@ export default new Vuex.Store({
 			order: {
 				by: 'id',
 				direction: 'desc'
-			}
+			},
+			active: false,
+			access: '',
+			type: ''
 		}
   	}
   },
@@ -27,6 +30,16 @@ export default new Vuex.Store({
        if (typeof payload.order != 'undefined') {
        		state.challenge.filter.order = payload.order;
        }
+       if (typeof payload.active != 'undefined') {
+			state.challenge.filter.active = payload.active;
+	   }
+       if (typeof payload.access != 'undefined') {
+			state.challenge.filter.access = payload.access;
+	   }
+       if (typeof payload.type != 'undefined') {
+			state.challenge.filter.type = payload.type;
+	   }
+
     }
   }
 })
