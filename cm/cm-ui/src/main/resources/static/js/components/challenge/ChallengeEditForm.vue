@@ -108,6 +108,7 @@
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndAdd">Create And Add</button>
 				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndStay">Update</button>
 				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndExit">Update And Exit</button>
+				<button v-if="!isCreateMode" class="btn btn-danger" @click="deleteAndExit">Delete</button>
 			</div>
 		</div>
 	</div>
@@ -205,6 +206,12 @@
 							.then(result =>	resolve(result.bodyText),
 								error => reject(error));
 				});
+			},
+			deleteAndExit: function() {
+				this.restApi.delete({id: this.challenge.id}, this.challenge)
+					.then(result => {
+						this.$router.push({name: 'Challenge'});
+					});
 			},
 			createAndStay: function() {
 				this.createAsync().then(data => {

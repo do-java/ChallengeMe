@@ -23,14 +23,6 @@
 					<b>Timeline:</b> {{item.startDate | formatDateTime}} - {{item.endDate | formatDateTime}}</b>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col">
-					<div class="float-right">
-						<button class="btn btn-primary btn-sm" @click="del"><i class="fas fa-minus"></i></button>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </template>
@@ -46,12 +38,6 @@
 			}
 		},
 		methods: {
-			del: function() {
-				this.$resource('/rest/challenges{/id}').delete({id: this.item.id}).then(result => {
-					this.items.splice($.inArray(this.item, this.items), 1)
-				})
-
-			},
 
 		}
    }
