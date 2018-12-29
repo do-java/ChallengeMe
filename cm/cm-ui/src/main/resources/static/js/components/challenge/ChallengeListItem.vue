@@ -8,7 +8,7 @@
 							<b>[{{item.id}}] {{item.name}}</b>
 						</div>
 						<div>
-							<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid" alt="Challenge picture"></img>
+							<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid w-100" alt="Challenge picture"></img>
 						</div>
 					</router-link>
 				</div>

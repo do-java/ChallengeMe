@@ -18,7 +18,7 @@
 				File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
 				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndStay">Update</button>
 				<div>
-					<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid img-thumbnail" alt="Challenge picture"></img>
+					<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid img-thumbnail w-100" alt="Challenge picture"></img>
 				</div>
 			</div>
 		</div>
