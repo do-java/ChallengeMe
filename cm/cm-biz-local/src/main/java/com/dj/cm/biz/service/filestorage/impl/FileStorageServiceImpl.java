@@ -52,23 +52,17 @@ public class FileStorageServiceImpl implements FileStorageService {
 			String resultFilename = uuidFile + "." + filename;
 
 			InputStream inputStream = file.getInputStream();
-			Files.copy(inputStream, Paths.get(getPath(resultFilename)), StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(inputStream, getPath(resultFilename), StandardCopyOption.REPLACE_EXISTING);
 			return resultFilename;
 		} catch (IOException e) {
 			throw new BizException("Failed to store file " + filename, e);
 		}
 	}
 
-
-	@Override
-	public String getPath(String filename) {
-		return config.getFileStoragePath() + File.separator + filename;
-	}
-
 	@Override
 	public Resource loadAsResource(String filename) {
 		try {
-			Path path = Paths.get(getPath(filename));
+			Path path = getPath(filename);
 			Resource resource = new UrlResource(path.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
@@ -82,6 +76,15 @@ public class FileStorageServiceImpl implements FileStorageService {
 
 	@Override
 	public void delete(String filename) {
+		Path path = getPath(filename);
+		File file = new File(path.toUri());
 
+		if (file.exists()) {
+			file.delete();
+		}
+	}
+
+	private Path getPath(String filename) {
+		return Paths.get(config.getFileStoragePath() + File.separator + filename);
 	}
 }

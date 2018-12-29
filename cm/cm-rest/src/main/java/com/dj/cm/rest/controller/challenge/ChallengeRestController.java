@@ -3,8 +3,14 @@ package com.dj.cm.rest.controller.challenge;
 import com.dj.cm.biz.service.challenge.ChallengeService;
 import com.dj.cm.model.entity.Challenge;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Usage:
@@ -43,13 +49,8 @@ public class ChallengeRestController {
         return challengesService.updateChallenge(challenge);
     }
 
-    @PutMapping("/update2/{id}")
-    public Challenge update2(@RequestParam("file") MultipartFile file, @RequestParam("challenge") Challenge challenge) {
-        return challengesService.updateChallenge(challenge);
-    }
-
     @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") Challenge challenge){
-        challengesService.deleteChallengeById(challenge);
+    public void deleteById(@PathVariable("id") Long id){
+        challengesService.deleteChallengeById(id);
     }
 }

@@ -8,7 +8,7 @@ import com.dj.cm.model.entity.Challenge;
 public interface ChallengeService {
     Iterable<Challenge> getAllChallenges();
     Challenge getChallengeById(Long id);
-    void deleteChallengeById(Challenge challenge);
+    void deleteChallengeById(Long id);
     Challenge createChallenge(Challenge challenge);
     Challenge updateChallenge(Challenge challenge);
 }
