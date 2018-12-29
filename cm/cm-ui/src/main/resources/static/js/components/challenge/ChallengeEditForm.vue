@@ -16,8 +16,8 @@
 			<label class="col-sm-2 col-form-label">Picture</label>
 			<div class="col">
 				File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+				<button v-if="isShowApplyPictureButton" class="btn btn-primary" @click="updateAndStay">Apply</button>
 				<button v-if="isShowClearPictureButton" class="btn btn-primary" @click="clearPicture">Clear Picture</button>
-				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndStay">Update</button>
 				<div>
 					<img :src="challenge.pictureFilename | toChallengePictureUrl" class="img-fluid img-thumbnail w-100" alt="Challenge picture"></img>
 				</div>
@@ -134,6 +134,9 @@
 		computed: {
 			isCreateMode: function() {
 				return this.challenge.id == null;
+			},
+			isShowApplyPictureButton: function() {
+				return !this.isCreateMode && this.file;
 			},
 			isShowClearPictureButton: function() {
 				return this.challenge.pictureFilename || this.file;
