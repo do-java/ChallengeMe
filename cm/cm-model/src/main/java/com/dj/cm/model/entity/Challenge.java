@@ -72,20 +72,10 @@ public class Challenge implements Serializable {
 
     private Date endDate;
 
+    private String pictureFilename;
+
     public Challenge(){
 
-    }
-
-    public Challenge(String name, String type, String description, int priority, int maxMembers, AccessEnum access, StatusEnum status, Date startDate, Date endDate) {
-        this.name = name;
-        this.type = type;
-        this.description = description;
-        this.priority = priority;
-        this.maxMembers = maxMembers;
-        this.access = access;
-        this.status = status;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     public Long getId() {
@@ -148,6 +138,14 @@ public class Challenge implements Serializable {
         this.endDate = endDate;
     }
 
+    public String getPictureFilename() {
+        return pictureFilename;
+    }
+
+    public void setPictureFilename(String pictureFilename) {
+        this.pictureFilename = pictureFilename;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Challenge{");
@@ -161,6 +159,7 @@ public class Challenge implements Serializable {
         sb.append(", status=").append(status);
         sb.append(", startDate=").append(startDate);
         sb.append(", endDate=").append(endDate);
+        sb.append(", pictureFilename=").append(pictureFilename);
         sb.append('}');
         return sb.toString();
     }

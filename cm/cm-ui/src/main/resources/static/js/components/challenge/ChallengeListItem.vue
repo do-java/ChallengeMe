@@ -3,7 +3,14 @@
 		<div class="card-body">
 			<div class="row mb-2">
 				<div class="col">
-					<router-link class="text-dark" :to="{ name: 'ChallengeEdit', params: {id: item.id}}"><b>[{{item.id}}] {{item.name}}</b></router-link>
+					<router-link class="text-dark" :to="{ name: 'ChallengeEdit', params: {id: item.id}}">
+						<div>
+							<b>[{{item.id}}] {{item.name}}</b>
+						</div>
+						<div>
+							<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid" alt="Challenge picture"></img>
+						</div>
+					</router-link>
 				</div>
 			</div>
 			<div class="row">

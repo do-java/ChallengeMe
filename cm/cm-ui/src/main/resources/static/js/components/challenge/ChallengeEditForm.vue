@@ -13,6 +13,16 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Picture</label>
+			<div class="col">
+				File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndStay">Update</button>
+				<div>
+					<img :src="item.pictureFilename | toChallengePictureUrl" class="img-fluid img-thumbnail" alt="Challenge picture"></img>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Type</label>
 			<div class="col">
 				<input class="form-control" v-model="challenge.type" placeholder="Type"/>
@@ -54,7 +64,6 @@
 				  <option disabled value="">Select Status</option>
 				  <option>ACTIVE</option>
 				  <option>BLOCKED</option>
-				  <option>DEADLINE</option>
 				  <option>FINISHED</option>
 				  <option>ARCHIVATED</option>
 				</select>
@@ -94,10 +103,10 @@
 			</div>
 			<div class="col">
 				<router-link class="btn btn-primary mr-sm-5" to="/challenge">Back</router-link>
-				<button v-if="isCreateMode" class="btn btn-primary" @click="create">Create</button>
+				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndStay">Create</button>
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndExit">Create And Exit</button>
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndAdd">Create And Add</button>
-				<button v-if="!isCreateMode" class="btn btn-primary" @click="update">Update</button>
+				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndStay">Update</button>
 				<button v-if="!isCreateMode" class="btn btn-primary" @click="updateAndExit">Update And Exit</button>
 			</div>
 		</div>
@@ -111,7 +120,8 @@
 		},
 		data: function() {
 			return {
-				challenge: this.item
+				challenge: this.item,
+				file: null
 			}
 		},
 		private: function() {
@@ -128,44 +138,104 @@
 			}
 		},
 		methods: {
-			create: function() {
-				this.restApi.save({}, this.challenge).then(result =>
-					result.json().then(data => {
-						this.challenge = data;
-						this.$router.push({ name: 'ChallengeEdit', params: {id: this.challenge.id}});
-					})
-				)
+			createAsync: function() {
+				return new Promise((resolve, reject) => {
+					// Upload picture file
+					this.uploadPictureFileAsync(this.file)
+						.then(resultFilename => {
+							if (resultFilename) {
+								this.challenge.pictureFilename = resultFilename;
+							}
+
+							// Save challenge
+							this.restApi.save({}, this.challenge)
+								.then(result => {
+									result.json().then(data => resolve(data));
+								},	error => {
+									reject(error);
+								});
+						}, error => {
+							console.log("Unable to upload picture file: " + this.file + " error: " + error);
+						});
+				});
+
+				return new Promise((resolve, reject) => {
+					this.restApi.save({}, this.challenge)
+						.then(result => {
+							result.json().then(data => resolve(data));
+						},	error => {
+							reject(error);
+						});
+				});
+			},
+			updateAsync: function() {
+				return new Promise((resolve, reject) => {
+					// Upload picture file
+					this.uploadPictureFileAsync(this.file)
+						.then(resultFilename => {
+							if (resultFilename) {
+								this.challenge.pictureFilename = resultFilename;
+							}
+
+							// Update challenge
+							this.restApi.update({id: this.challenge.id}, this.challenge)
+								.then(result => {
+									result.json().then(data => resolve(data));
+								},	error => {
+									reject(error);
+								});
+						}, error => {
+							console.log("Unable to upload picture file: " + this.file + " error: " + error);
+						});
+				});
+			},
+			uploadPictureFileAsync: function(file) {
+				return new Promise((resolve, reject) => {
+					if (!file) {
+						resolve(null);
+						return;
+					}
+
+					// Create form data
+					var formData = new FormData();
+					formData.append('file', file);
+
+					// Call file upload
+					this.$resource('/files/upload').save({}, formData)
+							.then(result =>	resolve(result.bodyText),
+								error => reject(error));
+				});
+			},
+			createAndStay: function() {
+				this.createAsync().then(data => {
+					this.challenge = data;
+                    this.$router.push({ name: 'ChallengeEdit', params: {id: this.challenge.id}});
+				});
 			},
 			createAndExit: function() {
-				this.restApi.save({}, this.challenge).then(result =>
-					result.json().then(data => {
-						this.challenge =  data;
-						this.$router.push({name: 'Challenge'});
-					})
-				)
+				this.createAsync().then(data => {
+					this.$router.push({name: 'Challenge'});
+				});
 			},
 			createAndAdd: function() {
-				this.restApi.save({}, this.challenge).then(result =>
-					result.json().then(data => {
-						this.challenge = {};
-						this.$router.push({name: 'ChallengeAdd'});
-					})
-				)
+				this.createAsync().then(data => {
+					this.challenge = {};
+                    this.$router.push({name: 'ChallengeAdd'});
+				});
 			},
-			update: function() {
-				this.restApi.update({id: this.challenge.id}, this.challenge).then(result =>
-					result.json().then(data => {
-						this.challenge = data
-					})
-				)
+			updateAndStay: function() {
+				this.updateAsync().then(data => {
+					this.challenge = data;
+				});
 			},
 			updateAndExit: function() {
-				this.restApi.update({id: this.challenge.id}, this.challenge).then(result =>
-					result.json().then(data => {
-						this.challenge = data;
-						this.$router.push({name: 'Challenge'});
-					})
-				)
+				this.updateAsync().then(data => {
+					this.challenge = data;
+                    this.$router.push({name: 'Challenge'});
+				});
+			},
+			handleFileUpload: function() {
+				this.file = this.$refs.file.files[0];
 			},
 		},
 

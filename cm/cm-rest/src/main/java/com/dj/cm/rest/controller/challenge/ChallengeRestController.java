@@ -4,6 +4,7 @@ import com.dj.cm.biz.service.challenge.ChallengeService;
 import com.dj.cm.model.entity.Challenge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Usage:
@@ -39,6 +40,11 @@ public class ChallengeRestController {
 
     @PutMapping("{id}")
     public Challenge update(@RequestBody Challenge challenge){
+        return challengesService.updateChallenge(challenge);
+    }
+
+    @PutMapping("/update2/{id}")
+    public Challenge update2(@RequestParam("file") MultipartFile file, @RequestParam("challenge") Challenge challenge) {
         return challengesService.updateChallenge(challenge);
     }
 

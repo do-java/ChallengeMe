@@ -12,4 +12,8 @@ public class NotFoundBizException extends BizException {
 	public NotFoundBizException(String message) {
 		super(message);
 	}
+
+	public NotFoundBizException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }
