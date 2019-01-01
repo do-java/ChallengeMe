@@ -102,8 +102,10 @@
 		<div class="form-group row">
 			<div class="col-sm-2">
 			</div>
-			<div class="col">
+			<div class="col-1">
 				<router-link class="btn btn-primary mr-sm-5" to="/challenge">Back</router-link>
+			</div>
+			<div class="col text-right">
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndStay">Create</button>
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndExit">Create And Exit</button>
 				<button v-if="isCreateMode" class="btn btn-primary" @click="createAndAdd">Create And Add</button>

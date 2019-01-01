@@ -1,10 +1,12 @@
 <template>
-	<div class="card">
-	   <h2 class="card-header">Challenge Add</h2>
-	   <div class="card-body">
-		   <challenge-edit-form :item="{id: null, name:'Sport Event', type:'Sport', description:'UEFA championship', priority:4, maxMembers:8, access:'PRIVATE', status:'ACTIVE', startDate: '2018-11-15T16:30:00.000+0000', endDate: null}"></challenge-edit-form>
+	<div class="container shadow">
+		<div class="row">
+			<div class="col">
+				<h4>Challenge Add</h4>
+				<challenge-edit-form :item="{id: null, name:'Running challenge', type:'Sport', description:'Run 2 km across the streets every evening during the month', priority:4, maxMembers:8, access:'PRIVATE', status:'ACTIVE', startDate: '2019-03-12T16:30:00.000+0000', endDate: null}"></challenge-edit-form>
+			</div>
 		</div>
-   </div>
+	</div>
 </template>
 
 <script>

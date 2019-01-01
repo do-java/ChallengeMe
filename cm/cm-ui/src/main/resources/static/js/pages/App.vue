@@ -8,7 +8,7 @@
 		   </div>
 		   <div class="col-xl-2"/>
 		</div>
-		<footer class="text-center">Copyright © Do Java 2018</footer>
+		<footer class="text-center mt-3">Copyright © Do Java 2018</footer>
    </div>
 </template>
 
