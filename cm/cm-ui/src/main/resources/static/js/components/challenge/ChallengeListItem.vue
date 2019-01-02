@@ -1,5 +1,5 @@
 <template>
-	<div class="card mb-4 shadow">
+	<div class="card challenge-list-item mb-4 shadow">
 		<div class="card-body">
 			<div class="row mb-2">
 				<div class="col">

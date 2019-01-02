@@ -49,9 +49,18 @@ $theme-colors: (
 	}
 }
 
-.cm-highlight>span {
+.cm-highlight > span {
 	background: url(/img/brush-stroke.svg);
 	background-size: 100% 100%;
+}
+
+.challenge-list > .challenge-list-item {
+ 	transition: transform .2s; // Animation
+
+ 	&:hover {
+     	transform: scale(1.06); // Zoom
+     	-webkit-transform: scale(1.08); // Zoom
+    }
 }
 
 // datetime customization
