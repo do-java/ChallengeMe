@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.dj.cm</groupId>
-            <artifactId>cm-persistance</artifactId>
+            <artifactId>cm-persistence</artifactId>
             <version>${project.version}</version>
         </dependency>
 
