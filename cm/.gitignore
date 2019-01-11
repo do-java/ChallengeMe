@@ -1,2 +1,4 @@
 .idea/
+logs/
 storage/
+cm-ui/node_modules/
