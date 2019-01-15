@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Usage:
  *
  * http://localhost:8080/rest/echo?s=bbb&n=9
+ * http://localhost:8080/rest/echo/44?n=45
  */
 @RestController
 @RequestMapping("rest/echo")
