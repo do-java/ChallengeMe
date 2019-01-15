@@ -1,6 +1,6 @@
-package com.dj.cm.biz.service.impl;
+package com.dj.cm.biz.service.echo.impl;
 
-import com.dj.cm.biz.service.EchoService;
+import com.dj.cm.biz.service.echo.EchoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

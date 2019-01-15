@@ -1,6 +1,6 @@
 package com.dj.cm.rest.controller.echo;
 
-import com.dj.cm.biz.service.EchoService;
+import com.dj.cm.biz.service.echo.EchoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

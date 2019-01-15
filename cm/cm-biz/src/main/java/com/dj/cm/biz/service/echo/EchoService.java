@@ -1,4 +1,4 @@
-package com.dj.cm.biz.service;
+package com.dj.cm.biz.service.echo;
 
 /**
  * Echo Service.
