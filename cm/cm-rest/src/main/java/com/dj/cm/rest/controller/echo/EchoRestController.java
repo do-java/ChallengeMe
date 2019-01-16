@@ -1,6 +1,7 @@
 package com.dj.cm.rest.controller.echo;
 
 import com.dj.cm.biz.service.echo.EchoService;
+import com.dj.cm.model.entity.Echo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Usage:
+ * <p>
+ * GET http://localhost:8080/rest/echo/do?s=bbb&n=9
+ * GET http://localhost:8080/rest/echo/do/1?n=9
+ * GET http://localhost:8080/rest/echo/1
+ * GET http://localhost:8080/rest/echo/all
  *
  * http://localhost:8080/rest/echo?s=bbb&n=9
  * http://localhost:8080/rest/echo/44?n=45
@@ -19,17 +25,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("rest/echo")
 public class EchoRestController {
 
-    @Autowired
-    private EchoService echoService;
+	@Autowired
+	private EchoService echoService;
 
-    @GetMapping
-    public String doEcho(@RequestParam(defaultValue = "aaa") String s, @RequestParam(defaultValue = "3") int n) {
-        return echoService.doEcho(s, n);
-    }
+	@GetMapping("/do")
+	public String doEcho(@RequestParam(defaultValue = "aaa") String s, @RequestParam(defaultValue = "3") int n) {
+		return echoService.doEcho(s, n);
+	}
 
-    @GetMapping("{id}")
-    public String getEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
-        return echoService.getEcho(id, n);
-    }
+	@GetMapping("/do/{id}")
+	public String doEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
+		return echoService.doEcho(id, n);
+	}
+
+	@GetMapping("{id}")
+	public Echo getById(@PathVariable Long id) {
+		return echoService.getEchoById(id);
+	}
+
+	@GetMapping("/all")
+	public Iterable<Echo> getAll() {
+		return echoService.getAllEchos();
+	}
 
 }
