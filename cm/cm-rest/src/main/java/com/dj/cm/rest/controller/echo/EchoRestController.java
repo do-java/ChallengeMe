@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Usage:
  * <p>
- * GET http://localhost:8080/rest/echo/do?s=bbb&n=9
- * GET http://localhost:8080/rest/echo/do/1?n=9
- * GET http://localhost:8080/rest/echo
- * GET http://localhost:8080/rest/echo/1
+ * GET http://localhost:8080/rest/echos/do?s=bbb&n=9
+ * GET http://localhost:8080/rest/echos/1/do?n=9
+ * GET http://localhost:8080/rest/echos
+ * GET http://localhost:8080/rest/echos/1
  *
  */
 @RestController
-@RequestMapping("rest/echo")
+@RequestMapping("rest/echos")
 public class EchoRestController {
 
 	@Autowired
@@ -41,7 +41,7 @@ public class EchoRestController {
 		return echoService.doEcho(s, n);
 	}
 
-	@GetMapping("/do/{id}")
+	@GetMapping("{id}/do")
 	public String doEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
 		return echoService.doEcho(id, n);
 	}
