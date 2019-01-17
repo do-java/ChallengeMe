@@ -1,7 +1,7 @@
 package com.dj.cm.biz.service.echo.impl;
 
-import com.dj.cm.event.config.EventConfig;
-import com.dj.cm.event.echo.EchoEvent;
+import com.dj.cm.event.amqp.config.AmqpEventConfig;
+import com.dj.cm.event.model.echo.EchoEvent;
 import org.slf4j.Logger;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -21,7 +21,7 @@ public class EchoAnonymousQueuEventListener {
 
 	@RabbitListener(bindings = @QueueBinding(
 			value = @Queue,
-			exchange = @Exchange(value = EventConfig.ECHO_EXCHANGE_NAME, type = ExchangeTypes.FANOUT)
+			exchange = @Exchange(value = AmqpEventConfig.ECHO_EXCHANGE_NAME, type = ExchangeTypes.FANOUT)
 	))
 	public void handle(EchoEvent event) {
 		logger.info(" [x] Received '" + event + "'");

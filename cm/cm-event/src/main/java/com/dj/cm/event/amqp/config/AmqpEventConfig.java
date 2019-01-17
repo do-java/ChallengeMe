@@ -1,4 +1,4 @@
-package com.dj.cm.event.config;
+package com.dj.cm.event.amqp.config;
 
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
@@ -14,9 +14,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * Ampq Event Config.
+ */
 @Configuration
 @PropertySource("event.properties")
-public class EventConfig {
+public class AmqpEventConfig {
 
 	//
 	// Constants

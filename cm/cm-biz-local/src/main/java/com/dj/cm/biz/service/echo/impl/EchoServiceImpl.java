@@ -2,10 +2,10 @@ package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.echo.EchoService;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
-import com.dj.cm.event.echo.EchoCreatedEvent;
-import com.dj.cm.event.echo.EchoDeletedEvent;
-import com.dj.cm.event.echo.EchoUpdatedEvent;
-import com.dj.cm.event.util.EventUtil;
+import com.dj.cm.event.amqp.util.AmqpEventUtil;
+import com.dj.cm.event.model.echo.EchoCreatedEvent;
+import com.dj.cm.event.model.echo.EchoDeletedEvent;
+import com.dj.cm.event.model.echo.EchoUpdatedEvent;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ public class EchoServiceImpl implements EchoService {
 	private EchoRepository echoRepository;
 
 	@Autowired
-	private EventUtil eventUtil;
+	private AmqpEventUtil eventUtil;
 
 	@Override
 	public List<Echo> getAllEchos() {

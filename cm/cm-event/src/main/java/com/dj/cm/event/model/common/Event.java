@@ -1,4 +1,4 @@
-package com.dj.cm.event.common;
+package com.dj.cm.event.model.common;
 
 import java.io.Serializable;
 
@@ -15,10 +15,6 @@ public class Event implements Serializable {
 
 	public EventType getType() {
 		return type;
-	}
-
-	public enum EventType {
-		CREATED, UPDATED, DELETED
 	}
 
 	@Override

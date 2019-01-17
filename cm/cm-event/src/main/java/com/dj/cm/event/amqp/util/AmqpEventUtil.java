@@ -1,26 +1,26 @@
-package com.dj.cm.event.util;
+package com.dj.cm.event.amqp.util;
 
-import com.dj.cm.event.common.Event;
-import com.dj.cm.event.config.EventConfig;
-import com.dj.cm.event.echo.EchoEvent;
+import com.dj.cm.event.amqp.config.AmqpEventConfig;
+import com.dj.cm.event.model.common.Event;
+import com.dj.cm.event.model.echo.EchoEvent;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Event Util.
+ * Amqp Event Util.
  */
 @Component
-public class EventUtil {
+public class AmqpEventUtil {
 
 	@Autowired
 	private AmqpTemplate amqpTemplate;
 
 	@Autowired
-	private EventConfig eventConfig;
+	private AmqpEventConfig eventConfig;
 
 	public void sendEchoEvent(EchoEvent event) {
-		sendEvent(EventConfig.ECHO_EXCHANGE_NAME, event);
+		sendEvent(AmqpEventConfig.ECHO_EXCHANGE_NAME, event);
 	}
 
 	private void sendEvent(String exchangeName, Event event) {
