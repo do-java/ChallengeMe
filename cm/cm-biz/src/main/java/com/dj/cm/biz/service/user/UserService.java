@@ -10,7 +10,7 @@ import com.dj.cm.biz.service.exception.AlreadyExistBizException;
 public interface UserService {
 
     /**
-     * Get all echos;
+     * Get all users;
      *
      * @return @{@link UserModel} list
      */
@@ -42,7 +42,7 @@ public interface UserService {
     UserModel createUser(UserModel userModel);
 
     /**
-     * Update echo.
+     * Update user.
      *
      * @param userModel user to update
      * @return updated user
