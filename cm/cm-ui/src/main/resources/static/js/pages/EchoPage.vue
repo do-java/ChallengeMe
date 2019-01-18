@@ -13,6 +13,7 @@
    import EchoList from 'components/echo/EchoList.vue'
    import EchoAddForm from 'components/echo/EchoAddForm.vue'
    import EchoGet from 'components/echo/EchoGet.vue'
+   import { addEchoHandler } from 'util/websocket'
 
    export default {
 		components: {
@@ -31,6 +32,11 @@
 					data.forEach(item => this.echos.push(item))
 				)
 			)
+
+			addEchoHandler(data => {
+                console.log('Handler received event:');
+                console.log(data);
+            })
 		}
    }
 </script>

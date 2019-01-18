@@ -15,6 +15,14 @@ public class EchoUpdatedEvent extends EchoEvent {
 		this.newValue = newValue;
 	}
 
+	public Echo getOldValue() {
+		return oldValue;
+	}
+
+	public Echo getNewValue() {
+		return newValue;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("EchoUpdatedEvent{");

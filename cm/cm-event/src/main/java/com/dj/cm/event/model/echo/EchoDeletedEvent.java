@@ -13,6 +13,10 @@ public class EchoDeletedEvent extends EchoEvent {
 		this.value = value;
 	}
 
+	public Echo getValue() {
+		return value;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("EchoDeletedEvent{");
