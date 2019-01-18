@@ -11,4 +11,6 @@ public interface UserService {
 
     UserModel saveUser(UserModel userModel);
 
+    UserModel updateUser(UserModel userModel);
+
 }

@@ -29,15 +29,17 @@ public class UserRestController {
     }
 
     @PostMapping
-    public UserModel save(@RequestBody UserModel userModel){
-        if (userModel.getId().equals(userService.getUserById(userModel.getId()).getId())) {
-            throw new AlreadyExistBizExeption("User with id =" + userModel.getId() + " already exist");
-        }else
-            userService.saveUser(userModel);
+    public UserModel create(@RequestBody UserModel userModel){
 
-        return userModel;
+        return userService.saveUser(userModel);
     }
-    @DeleteMapping
+
+    @PutMapping("{id}")
+    public UserModel update(@PathVariable Long id, @RequestBody UserModel user){
+        return userService.updateUser(user);
+    }
+
+    @DeleteMapping("{id}")
     public void deleteById(@PathVariable Long id){
         userService.deleteUserById(id);
     }
