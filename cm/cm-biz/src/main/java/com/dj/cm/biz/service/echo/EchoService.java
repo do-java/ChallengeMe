@@ -13,4 +13,7 @@ public interface EchoService {
      * @return echo string
      */
     String doEcho(String s, int n);
+
+    String getEcho(Long id, int n);
+
 }

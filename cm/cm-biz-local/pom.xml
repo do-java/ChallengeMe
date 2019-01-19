@@ -23,6 +23,7 @@
             <artifactId>cm-biz</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.dj.cm</groupId>
             <artifactId>cm-persistence</artifactId>
