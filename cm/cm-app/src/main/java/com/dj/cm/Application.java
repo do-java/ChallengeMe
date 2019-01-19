@@ -1,4 +1,4 @@
-package com.dj.cm.app;
+package com.dj.cm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
