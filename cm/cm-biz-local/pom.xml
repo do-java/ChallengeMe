@@ -23,10 +23,21 @@
             <artifactId>cm-biz</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.dj.cm</groupId>
             <artifactId>cm-persistence</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
         </dependency>
 
     </dependencies>
