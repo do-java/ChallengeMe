@@ -5,11 +5,13 @@ import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,10 +19,13 @@ import java.util.Optional;
 public class EchoServiceImpl implements EchoService {
 
     @Autowired
+    private Logger logger;
+
+    @Autowired
     private EchoRepository echoRepository;
 
     @Override
-    public Iterable<Echo> getAllEchos() {
+    public List<Echo> getAllEchos() {
         return echoRepository.findAll();
     }
 
@@ -28,7 +33,9 @@ public class EchoServiceImpl implements EchoService {
     public Echo getEchoById(Long id) {
         Optional<Echo> echoOptional = echoRepository.findById(id);
         if (!echoOptional.isPresent()) {
-            throw new NotFoundBizException(String.format("Echo with Id: %s not found", id));
+            final String msg = String.format("Echo with Id: %s not found", id);
+            logger.error(msg);
+            throw new NotFoundBizException(msg);
         }
 
         return echoOptional.get();
