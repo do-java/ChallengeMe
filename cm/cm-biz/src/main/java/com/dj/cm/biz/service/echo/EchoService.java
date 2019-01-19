@@ -3,6 +3,8 @@ package com.dj.cm.biz.service.echo;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.model.entity.Echo;
 
+import java.util.List;
+
 /**
  * Echo Service.
  */
@@ -13,7 +15,7 @@ public interface EchoService {
      *
      * @return @{@link Echo} list
      */
-    Iterable<Echo> getAllEchos();
+    List<Echo> getAllEchos();
 
     /**
      * Get echo by id;

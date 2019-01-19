@@ -15,6 +15,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,7 @@ public class EchoServiceCachedImpl implements EchoService {
     private EchoService self; // Used to call self Cacheable methods
 
     @Override
-    public Iterable<Echo> getAllEchos() {
+    public List<Echo> getAllEchos() {
         return echoRepository.findAll();
     }
 

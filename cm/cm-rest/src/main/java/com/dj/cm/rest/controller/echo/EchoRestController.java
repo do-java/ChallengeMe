@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 /**
  * Usage:
@@ -36,7 +38,7 @@ public class EchoRestController {
     private EchoService echoService;
 
     @GetMapping
-    public Iterable<Echo> getAll() {
+    public List<Echo> getAll() {
         return echoService.getAllEchos();
     }
 
