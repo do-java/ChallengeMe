@@ -1,7 +1,7 @@
 package com.dj.cm.biz.service.echo;
 
 /**
- * Echo Service
+ * com.dj.cm.model.entity.Echo Service
  */
 public interface EchoService {
 
@@ -13,4 +13,6 @@ public interface EchoService {
      * @return echo string
      */
     String doEcho(String s, int n);
+
+    String getEcho(Long id, int i);
 }
