@@ -2,6 +2,7 @@ package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.event.amqp.util.AmqpEventUtil;
+import com.dj.cm.event.websocket.util.WebSocketEventUtil;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.junit.After;
@@ -34,6 +35,9 @@ public class EchoServiceImplTest {
 
 	@Mock
 	private AmqpEventUtil eventUtil;
+
+	@Mock
+	private WebSocketEventUtil webSocketEventUtil;
 
 	@Mock
 	private EchoRepository repository;
