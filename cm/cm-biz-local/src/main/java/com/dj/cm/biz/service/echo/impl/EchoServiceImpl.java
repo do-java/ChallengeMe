@@ -40,7 +40,7 @@ public class EchoServiceImpl implements EchoService {
 	@Override
 	public Echo updateEcho(Echo echo) {
 		Echo echoToUpdate = getEchoById(echo.getId());
-		BeanUtils.copyProperties(echo, echoToUpdate, "id");
+		BeanUtils.copyProperties(echo, echoToUpdate, "id", "createdDate", "modifiedDate");
 		return echoRepository.save(echoToUpdate);
 	}
 
