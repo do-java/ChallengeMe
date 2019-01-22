@@ -21,14 +21,9 @@ public class EchoRestController {
     @Autowired
     private EchoService echoService;
 
-    @GetMapping("/do")
-    public String doEcho(@RequestParam(defaultValue = "aaa") String s, @RequestParam(defaultValue = "3") int n) {
-        return echoService.doEcho(s, n);
-    }
-
-    @GetMapping("/do/{id}")
-    public String doEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
-        return echoService.getEcho(id, n);
+    @GetMapping
+    public Iterable<Echo> getAll() {
+        return echoService.getAllEchos();
     }
 
     @GetMapping("{id}")
@@ -36,8 +31,13 @@ public class EchoRestController {
         return echoService.getEchoById(id);
     }
 
-    @GetMapping("/all")
-    public Iterable<Echo> getAll() {
-        return echoService.getAllEchos();
+    @GetMapping("/do")
+    public String doEcho(@RequestParam(defaultValue = "aaa") String s, @RequestParam(defaultValue = "3") int n) {
+        return echoService.doEcho(s, n);
+    }
+
+    @GetMapping("/do/{id}")
+    public String doEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
+        return echoService.doEcho(id, n);
     }
 }
