@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  *
  */
 @RestController
-@RequestMapping("rest/echo")
+@RequestMapping("rest/echos")
 public class EchoRestController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class EchoRestController {
         return echoService.doEcho(s, n);
     }
 
-    @GetMapping("/do/{id}")
+    @GetMapping("{id}/do")
     public String doEcho(@RequestParam(defaultValue = "3") int n, @PathVariable Long id) {
         return echoService.doEcho(id, n);
     }
