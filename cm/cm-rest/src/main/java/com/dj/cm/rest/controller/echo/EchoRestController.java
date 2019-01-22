@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Usage:
  * <p>
- * GET http://localhost:8080/rest/echo/do?s=bbb&n=9
- * GET http://localhost:8080/rest/echo/do/1?n=9
- * GET http://localhost:8080/rest/echo/1
- * GET http://localhost:8080/rest/echo/all
+ * GET http://localhost:8080/rest/echos/do?s=bbb&n=9
+ * GET http://localhost:8080/rest/echos/1/do?n=9
+ * GET http://localhost:8080/rest/echos
+ * GET http://localhost:8080/rest/echos/1
+ * fetch('/rest/echos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ value: 'ccc' , id: null}) }).then(result => result.json().then(console.log))
+ * fetch('/rest/echos/1', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ value: 'aaa1' , id: 99}) }).then(result => result.json().then(console.log))
+ * fetch('/rest/echos/9', { method: 'DELETE' }).then(result => console.log(result))
  *
  */
 @RestController
@@ -29,6 +32,22 @@ public class EchoRestController {
     @GetMapping("{id}")
     public Echo getById(@PathVariable Long id) {
         return echoService.getEchoById(id);
+    }
+
+    @PostMapping
+    public Echo create(@RequestBody Echo echo) {
+        return echoService.createEcho(echo);
+    }
+
+    @PutMapping("{id}")
+    public Echo update(@PathVariable Long id, @RequestBody Echo echo) {
+        echo.setId(id); // Update id from path
+        return echoService.updateEcho(echo);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        echoService.deleteEcho(id);
     }
 
     @GetMapping("/do")
