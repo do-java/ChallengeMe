@@ -1,11 +1,11 @@
 package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.echo.EchoService;
+import com.dj.cm.model.entity.Echo;
+import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class EchoServiceImpl implements EchoService {
@@ -20,11 +20,21 @@ public class EchoServiceImpl implements EchoService {
 
     @Override
     public String getEcho(Long id, int n) {
-        Optional<Echo> optionalEcho = echoRepository.findById(id);
-        if (optionalEcho.isPresent()) {
-            return doEcho(optionalEcho.get().getValue(), n);
+        Echo echo = echoRepository.findById(id);
+        if (echo != null) {
+            return doEcho(echo.getValue(), n);
         } else {
             return "Not found";
         }
+    }
+
+    @Override
+    public Iterable<Echo> getAllEchos() {
+        return echoRepository.findAll();
+    }
+
+    @Override
+    public Echo getEchoById(Long id) {
+        return echoRepository.findById(id).orElse(null);
     }
 }
