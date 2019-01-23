@@ -1,17 +1,24 @@
 package com.dj.cm.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Echo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String value;
+    @CreatedDate
+    private LocalDateTime creationDate;
+    @LastModifiedDate
+    private LocalDateTime updatingDate;
 
     protected Echo() {
     }
@@ -36,11 +43,29 @@ public class Echo {
         this.value = value;
     }
 
+    public LocalDateTime getCreationDate() {
+        return this.creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public LocalDateTime getUpdatingDate() {
+        return updatingDate;
+    }
+
+    public void setUpdatingDate(LocalDateTime updatingDate) {
+        this.updatingDate = updatingDate;
+    }
+
     @Override
     public String toString() {
         return "Echo{" +
                 "id=" + id +
                 ", value='" + value + '\'' +
+                ", creationDate='" + creationDate + '\'' +
+                ", updatingDate='" + creationDate + '\'' +
                 '}';
     }
 

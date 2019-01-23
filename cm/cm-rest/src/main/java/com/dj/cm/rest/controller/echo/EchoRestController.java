@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * GET http://localhost:8080/rest/echos
  * GET http://localhost:8080/rest/echos/1
  * fetch('/rest/echos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ value: 'ccc' , id: null}) }).then(result => result.json().then(console.log))
- * fetch('/rest/echos/1', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ value: 'aaa1' , id: 99}) }).then(result => result.json().then(console.log))
+ * fetch('/rest/echos/1', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ value: 'aaa1' }) }).then(result => result.json().then(console.log))
  * fetch('/rest/echos/9', { method: 'DELETE' }).then(result => console.log(result))
  *
  */
