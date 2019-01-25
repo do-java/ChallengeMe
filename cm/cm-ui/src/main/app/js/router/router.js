@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import HomePage from 'pages/HomePage.vue'
 
+import LoginPage from 'pages/LoginPage.vue'
+
 import EchoPage from 'pages/EchoPage.vue'
 import EchoAddPage from 'pages/EchoAddPage.vue'
 import EchoEditPage from 'pages/EchoEditPage.vue'
@@ -19,6 +21,11 @@ export default new Router({
 	   path: '/',
 	   name: 'Home',
 	   component: HomePage
+	 },
+	 {
+	     path: '/login',
+         name: 'Login',
+		 component: LoginPage
 	 },
 	 {
 	  path: '/echo',
