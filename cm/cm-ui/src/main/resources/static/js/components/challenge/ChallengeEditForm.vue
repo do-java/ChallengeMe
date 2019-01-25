@@ -12,17 +12,29 @@
 				<input class="form-control" v-model="challenge.name" placeholder="Name"/>
 			</div>
 		</div>
+
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Picture</label>
 			<div class="col">
-				File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-				<button v-if="isShowApplyPictureButton" class="btn btn-primary" @click="updateAndStay">Apply</button>
+				<button class="btn btn-primary" @click="toggleShowPictureCropUpload">Upload Picture..</button>
 				<button v-if="isShowClearPictureButton" class="btn btn-primary" @click="clearPicture">Clear Picture</button>
+				<vue-image-crop-upload field="img"
+						   @crop-success="cropSuccess"
+						   v-model="showPictureCropUpload"
+						   :width="700"
+						   :height="433"
+						   img-format="png"
+						   lang-type="en"
+						   :no-circle="true"
+						   :no-square="true"
+						   :no-rotate="false"
+				></vue-image-crop-upload>
 				<div>
-					<img :src="challenge.pictureFilename | toChallengePictureUrl" class="img-fluid img-thumbnail w-100" alt="Challenge picture"></img>
+					<img :src="challengePictureUrl" class="img-fluid img-thumbnail w-100" alt="Challenge picture"></img>
 				</div>
 			</div>
 		</div>
+
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Type</label>
 			<div class="col">
@@ -51,22 +63,22 @@
 			<label class="col-sm-2 col-form-label">Access</label>
 			<div class="col">
 				<select class="form-control" v-model="challenge.access">
-                  <option disabled value="">Select Access Type</option>
-                  <option>PRIVATE</option>
-                  <option>PUBLIC</option>
-                  <option>PROTECTED</option>
-                </select>
+					<option disabled value="">Select Access Type</option>
+					<option>PRIVATE</option>
+					<option>PUBLIC</option>
+					<option>PROTECTED</option>
+				</select>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">Status</label>
 			<div class="col">
 				<select class="form-control" v-model="challenge.status">
-				  <option disabled value="">Select Status</option>
-				  <option>ACTIVE</option>
-				  <option>BLOCKED</option>
-				  <option>FINISHED</option>
-				  <option>ARCHIVATED</option>
+					<option disabled value="">Select Status</option>
+					<option>ACTIVE</option>
+					<option>BLOCKED</option>
+					<option>FINISHED</option>
+					<option>ARCHIVATED</option>
 				</select>
 			</div>
 		</div>
@@ -74,13 +86,13 @@
 			<label class="col-sm-2 col-form-label">Start Date</label>
 			<div class="col">
 				<datetime
-					v-model="challenge.startDate"
-					type="datetime"
-					placeholder="Select Date"
-					input-class="form-control col-sm-4"
-					format="yyyy-MM-dd HH:mm"
-					auto
-					>
+						v-model="challenge.startDate"
+						type="datetime"
+						placeholder="Select Date"
+						input-class="form-control col-sm-4"
+						format="yyyy-MM-dd HH:mm"
+						auto
+				>
 				</datetime>
 			</div>
 		</div>
@@ -88,13 +100,13 @@
 			<label class="col-sm-2 col-form-label">End Date</label>
 			<div class="col">
 				<datetime
-					v-model="challenge.endDate"
-					type="datetime"
-					placeholder="Select Date"
-					input-class="form-control col-sm-4"
-					format="yyyy-MM-dd HH:mm"
-					auto
-					>
+						v-model="challenge.endDate"
+						type="datetime"
+						placeholder="Select Date"
+						input-class="form-control col-sm-4"
+						format="yyyy-MM-dd HH:mm"
+						auto
+				>
 				</datetime>
 			</div>
 		</div>
@@ -118,40 +130,42 @@
 </template>
 
 <script>
+	import Vue from 'vue';
+	import VueImageCropUpload from 'vue-image-crop-upload';
+
    export default {
 		props: {
 			item: Object
 		},
+		components: {
+			VueImageCropUpload
+		},
 		data: function() {
 			return {
 				challenge: this.item,
-				file: null
-			}
-		},
-		private: function() {
-			return {
-
+				showPictureCropUpload: false,
+				pictureDataUrl: ''
 			}
 		},
 		computed: {
 			isCreateMode: function() {
 				return this.challenge.id == null;
 			},
-			isShowApplyPictureButton: function() {
-				return !this.isCreateMode && this.file;
-			},
 			isShowClearPictureButton: function() {
-				return this.challenge.pictureFilename || this.file;
+				return this.challenge.pictureFilename || this.pictureDataUrl;
 			},
 			restApi: function() {
 				return this.$resource('/rest/challenges{/id}')
+			},
+			challengePictureUrl: function() {
+				return this.pictureDataUrl ? this.pictureDataUrl : Vue.filter('toChallengePictureUrl')(this.challenge.pictureFilename);
 			}
 		},
 		methods: {
 			createAsync: function() {
 				return new Promise((resolve, reject) => {
 					// Upload picture file
-					this.uploadPictureFileAsync(this.file)
+					this.uploadPictureAsync()
 						.then(resultFilename => {
 							if (resultFilename) {
 								this.challenge.pictureFilename = resultFilename;
@@ -165,23 +179,14 @@
 									reject(error);
 								});
 						}, error => {
-							console.log("Unable to upload picture file: " + this.file + " error: " + error);
-						});
-				});
-
-				return new Promise((resolve, reject) => {
-					this.restApi.save({}, this.challenge)
-						.then(result => {
-							result.json().then(data => resolve(data));
-						},	error => {
-							reject(error);
+							console.log("Unable to upload picture data. Cause: " + error);
 						});
 				});
 			},
 			updateAsync: function() {
 				return new Promise((resolve, reject) => {
-					// Upload picture file
-					this.uploadPictureFileAsync(this.file)
+					// Upload picture
+					this.uploadPictureAsync()
 						.then(resultFilename => {
 							if (resultFilename) {
 								this.challenge.pictureFilename = resultFilename;
@@ -199,19 +204,19 @@
 						});
 				});
 			},
-			uploadPictureFileAsync: function(file) {
+			uploadPictureAsync: function() {
 				return new Promise((resolve, reject) => {
-					if (!file) {
+					if (!this.pictureDataUrl) {
 						resolve(null);
 						return;
 					}
 
 					// Create form data
 					var formData = new FormData();
-					formData.append('file', file);
+					formData.append('data', this.pictureDataUrl);
 
 					// Call file upload
-					this.$resource('/files/upload').save({}, formData)
+					this.$resource('/files/upload64').save({}, formData)
 							.then(result =>	resolve(result.bodyText),
 								error => reject(error));
 				});
@@ -224,6 +229,7 @@
 			},
 			createAndStay: function() {
 				this.createAsync().then(data => {
+					this.clearPictureDataUrl();
 					this.challenge = data;
                     this.$router.push({ name: 'ChallengeEdit', params: {id: this.challenge.id}});
 				});
@@ -235,31 +241,36 @@
 			},
 			createAndAdd: function() {
 				this.createAsync().then(data => {
+					this.clearPictureDataUrl();
 					this.challenge = {};
                     this.$router.push({name: 'ChallengeAdd'});
 				});
 			},
 			updateAndStay: function() {
 				this.updateAsync().then(data => {
+					this.clearPictureDataUrl();
 					this.challenge = data;
 				});
 			},
 			updateAndExit: function() {
 				this.updateAsync().then(data => {
-					this.challenge = data;
                     this.$router.push({name: 'Challenge'});
 				});
 			},
-			handleFileUpload: function() {
-				this.file = this.$refs.file.files[0];
+			toggleShowPictureCropUpload() {
+				this.showPictureCropUpload = !this.showPictureCropUpload;
+			},
+			cropSuccess(pictureDataUrl, field) {
+				this.pictureDataUrl = pictureDataUrl;
+			},
+			clearPictureDataUrl: function() {
+				this.pictureDataUrl = null;
 			},
 			clearPicture: function() {
 				this.challenge.pictureFilename = null;
-				if (this.$refs.file) {
-					this.$refs.file.value = '';
-				}
-				this.file = null;
+				this.clearPictureDataUrl();
 			},
+
 		},
 
    }
