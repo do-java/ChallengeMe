@@ -3,6 +3,9 @@ package com.dj.cm.biz.service.filestorage.impl;
 import com.dj.cm.biz.service.exception.BizException;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.biz.service.filestorage.FileStorageService;
+import com.dj.cm.biz.service.filestorage.config.FileStorageConfig;
+import com.dj.cm.common.util.Base64DataUrl;
+import com.dj.cm.common.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -18,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.UUID;
 
 @Service
@@ -56,6 +60,27 @@ public class FileStorageServiceImpl implements FileStorageService {
 			return resultFilename;
 		} catch (IOException e) {
 			throw new BizException("Failed to store file " + filename, e);
+		}
+	}
+
+	@Override
+	public String storeBase64Url(String dataUrl) {
+		Base64DataUrl base64DataUrl = FileUtils.parseBase64DataUrl(dataUrl);
+		String uuidFile = UUID.randomUUID().toString();
+		String resultFilename = uuidFile + "." + base64DataUrl.getSubtype();
+
+		try {
+			File uploadDir = new File(config.getFileStoragePath());
+
+			if (!uploadDir.exists()) {
+				uploadDir.mkdir();
+			}
+
+			byte[] decodedDataUrl = Base64.getDecoder().decode(base64DataUrl.getData());
+			Files.write(getPath(resultFilename), decodedDataUrl);
+			return resultFilename;
+		} catch (IOException e) {
+			throw new BizException(String.format("Failed to store file %s from %s", resultFilename, base64DataUrl), e);
 		}
 	}
 
