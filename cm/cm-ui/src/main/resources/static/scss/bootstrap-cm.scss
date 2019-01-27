@@ -68,3 +68,14 @@ $theme-colors: (
 .vdatetime-calendar__month__day--selected > span > span {
 	background: darken(theme-color("primary"), 20%) !important;
 }
+
+.form-group-light input,
+.form-group-light select,
+.form-group-light textarea {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #D3D3D3;
+  box-shadow: none;
+  color: #696969;
+  margin-bottom: 1rem;
+}

@@ -1,18 +1,18 @@
 <template>
 	<div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Id</label>
 			<div class="col">
 				<input class="form-control-plaintext" v-model="challenge.id" readonly/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Name</label>
 			<div class="col">
 				<input class="form-control" v-model="challenge.name" placeholder="Name"/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Picture</label>
 			<div class="col">
 				File: <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
@@ -23,31 +23,31 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Type</label>
 			<div class="col">
 				<input class="form-control" v-model="challenge.type" placeholder="Type"/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Description</label>
 			<div class="col">
 				<textarea class="form-control" v-model="challenge.description" rows="4" placeholder="Description"/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Priority</label>
 			<div class="col">
 				<input class="form-control" v-model="challenge.priority" placeholder="Priority"/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Max Members</label>
 			<div class="col">
 				<input class="form-control" v-model="challenge.maxMembers" placeholder="Max Members"/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Access</label>
 			<div class="col">
 				<select class="form-control" v-model="challenge.access">
@@ -58,7 +58,7 @@
                 </select>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Status</label>
 			<div class="col">
 				<select class="form-control" v-model="challenge.status">
@@ -70,7 +70,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">Start Date</label>
 			<div class="col">
 				<datetime
@@ -84,7 +84,7 @@
 				</datetime>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label class="col-sm-2 col-form-label">End Date</label>
 			<div class="col">
 				<datetime

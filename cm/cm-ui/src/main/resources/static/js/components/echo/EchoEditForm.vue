@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label for="inpEchoId" class="col-sm-2 col-form-label">Id</label>
 			<div class="col">
 				<input class="form-control-plaintext" id="inpEchoId" v-model="echo.id" readonly/>
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group-light row">
 			<label for="inpEchoValue" class="col-sm-2 col-form-label">Value</label>
 			<div class="col">
 				<input class="form-control" id="inpEchoValue" v-model="echo.value" placeholder="Echo Value"/>

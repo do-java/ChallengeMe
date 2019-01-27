@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col">
-			<div class="form-group">
+			<div class="form-group-light">
 				<label>OrderBy</label>
 				<select v-model="orderValue" @change="orderUpdated" class="form-control form-control-sm">
 					<option value='{"by":"id","direction":"asc"}'>Id Asc</option>
