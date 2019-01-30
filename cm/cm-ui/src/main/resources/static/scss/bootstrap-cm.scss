@@ -79,3 +79,18 @@ $theme-colors: (
   color: #696969;
   margin-bottom: 1rem;
 }
+
+.form-group-light input:focus,
+.form-group-light select:focus,
+.form-group-light textarea:focus {
+  outline: 0;
+  border-width: 0 0 3px;
+  border-color: #9ca7a8;
+  box-shadow: none;
+  color: #374d4f;
+  background-image: linear-gradient(white, #eaf6f7);
+}
+
+.form-group-light select:focus {
+  background-color: #eaf6f7;
+}
