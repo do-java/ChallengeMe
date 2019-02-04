@@ -1,4 +1,5 @@
 .idea/
 logs/
 storage/
-cm-ui/node_modules/
+cm-ui/src/main/app/node_modules/
+cm-ui/src/main/app/dist/

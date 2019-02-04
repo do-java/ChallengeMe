@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'main', 'resources', 'static', 'js', 'main.js'),
+  entry: path.join(__dirname, 'js', 'main.js'),
   module: {
     rules: [
       {
@@ -43,8 +43,8 @@ module.exports = {
   ],
   resolve: {
       modules: [
-          path.join(__dirname, 'src', 'main', 'resources', 'static', 'js'),
-          path.join(__dirname, 'src', 'main', 'resources', 'static', 'scss'),
+          path.join(__dirname, 'js'),
+          path.join(__dirname, 'scss'),
           path.join(__dirname, 'node_modules'),
       ],
   }
