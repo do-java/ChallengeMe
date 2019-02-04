@@ -1,4 +1,4 @@
-package com.dj.cm.ui.controller.filestorage;
+package com.dj.cm.ui.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
