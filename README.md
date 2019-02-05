@@ -17,27 +17,40 @@ ChallengeMe - Application to manage and share challenges
 
 ### Deploy for Development
 
-1 Start RabbitMQ Messaging Server
+1\. Start RabbitMQ Messaging Server
 ```
 application.properties/event.enabled=true
 MacOS $ brew services start rabbitmq
 ```
 
-2 Start Application
+2\. Start Application
 ```
 Run com.dj.cm.Application from IDE or command-line
 ```
 
-3 Start Webpack Dev Server
+3\. Start Webpack Dev Server
 
 3.1 To apply any incoming package.json updates for node_modules, run:
 ```
-cm-ui $ npm install
+cm-ui/src/main/app $ npm install
 ```
 
 3.2 To start Webpack Dev Server, run:
 ```
-cm-ui $ npm start
+cm-ui/src/main/app $ npm start
+```
+
+
+### Deploy for Production
+
+1\. Build
+```
+cm $ mvn clean install
+```
+
+2\. Start Application
+```
+cm $ java -Dspring.profiles.active=production -jar cm-app/target/cm-app-1.0.0-SNAPSHOT.jar
 ```
 
 

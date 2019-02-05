@@ -39,6 +39,13 @@ public class FileStorageController {
 		return resultFilename;
 	}
 
+	@PostMapping("/files/upload64")
+	@ResponseBody
+	public String uploadFileBase64(@RequestParam("data") String data) {
+		String resultFilename = fileStorageService.storeBase64Url(data);
+		return resultFilename;
+	}
+
 	@ExceptionHandler(NotFoundBizException.class)
 	public ResponseEntity<?> handleFileNotFound(NotFoundBizException e) {
 		return ResponseEntity.notFound().build();
