@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <div><router-link class="navbar-item nav-link" active-class="active cm-highlight" to="/challenge"><span class="p-2">Challenge</span></router-link></div>
                 </li>
+                <li class="nav-item">
+                    <div><router-link class="navbar-item nav-link" active-class="active cm-highlight" to="/login"><span class="p-2">Logout</span></router-link></div>
+                </li>
             </ul>
         </div>
     </nav>

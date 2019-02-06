@@ -1,6 +1,7 @@
-package com.dj.cm.event.echo;
+package com.dj.cm.event.model.echo;
 
 
+import com.dj.cm.event.model.common.EventType;
 import com.dj.cm.model.entity.Echo;
 
 public class EchoCreatedEvent extends EchoEvent {
@@ -10,6 +11,10 @@ public class EchoCreatedEvent extends EchoEvent {
 	public EchoCreatedEvent(Echo value) {
 		super(EventType.CREATED);
 		this.value = value;
+	}
+
+	public Echo getValue() {
+		return value;
 	}
 
 	@Override

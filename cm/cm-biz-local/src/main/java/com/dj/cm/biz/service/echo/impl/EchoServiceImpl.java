@@ -2,10 +2,11 @@ package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.echo.EchoService;
 import com.dj.cm.biz.service.exception.NotFoundBizException;
-import com.dj.cm.event.echo.EchoCreatedEvent;
-import com.dj.cm.event.echo.EchoDeletedEvent;
-import com.dj.cm.event.echo.EchoUpdatedEvent;
-import com.dj.cm.event.util.EventUtil;
+import com.dj.cm.event.amqp.util.AmqpEventUtil;
+import com.dj.cm.event.model.echo.EchoCreatedEvent;
+import com.dj.cm.event.model.echo.EchoDeletedEvent;
+import com.dj.cm.event.model.echo.EchoUpdatedEvent;
+import com.dj.cm.event.websocket.util.WebSocketEventUtil;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,10 @@ public class EchoServiceImpl implements EchoService {
 	private EchoRepository echoRepository;
 
 	@Autowired
-	private EventUtil eventUtil;
+	private AmqpEventUtil amqpEventUtil;
+
+	@Autowired
+	private WebSocketEventUtil webSocketEventUtil;
 
 	@Override
 	public List<Echo> getAllEchos() {
@@ -51,7 +55,8 @@ public class EchoServiceImpl implements EchoService {
 	@Override
 	public Echo createEcho(Echo echo) {
 		Echo result = echoRepository.save(echo);
-		eventUtil.sendEchoEvent(new EchoCreatedEvent(result));
+		amqpEventUtil.sendEchoEvent(new EchoCreatedEvent(result));
+		webSocketEventUtil.sendEchoEvent(new EchoCreatedEvent(result));
 		return result;
 	}
 
@@ -64,7 +69,8 @@ public class EchoServiceImpl implements EchoService {
 
 		if (!echoToUpdateCopy.equals(result)) {
 			// Send event if entity updated
-			eventUtil.sendEchoEvent(new EchoUpdatedEvent(echoToUpdateCopy, result));
+			amqpEventUtil.sendEchoEvent(new EchoUpdatedEvent(echoToUpdateCopy, result));
+			webSocketEventUtil.sendEchoEvent(new EchoUpdatedEvent(echoToUpdateCopy, result));
 		}
 
 		return result;
@@ -74,7 +80,8 @@ public class EchoServiceImpl implements EchoService {
 	public void deleteEcho(Long id) {
 		Echo echoToDelete = getEchoById(id);
 		echoRepository.delete(echoToDelete);
-		eventUtil.sendEchoEvent(new EchoDeletedEvent(echoToDelete));
+		amqpEventUtil.sendEchoEvent(new EchoDeletedEvent(echoToDelete));
+		webSocketEventUtil.sendEchoEvent(new EchoDeletedEvent(echoToDelete));
 	}
 
 	@Override

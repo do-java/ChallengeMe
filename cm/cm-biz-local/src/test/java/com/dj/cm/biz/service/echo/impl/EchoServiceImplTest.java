@@ -1,6 +1,8 @@
 package com.dj.cm.biz.service.echo.impl;
 
 import com.dj.cm.biz.service.exception.NotFoundBizException;
+import com.dj.cm.event.amqp.util.AmqpEventUtil;
+import com.dj.cm.event.websocket.util.WebSocketEventUtil;
 import com.dj.cm.model.entity.Echo;
 import com.dj.cm.persistence.repo.echo.EchoRepository;
 import org.junit.After;
@@ -11,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +32,12 @@ public class EchoServiceImplTest {
 
 	@Mock
 	private Logger logger;
+
+	@Mock
+	private AmqpEventUtil eventUtil;
+
+	@Mock
+	private WebSocketEventUtil webSocketEventUtil;
 
 	@Mock
 	private EchoRepository repository;
