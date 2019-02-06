@@ -30,7 +30,7 @@
 					<label for="chkDeadline" class="form-check-label">Deadline</label>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group-light">
 					<label>Access</label>
 					<select v-model="filterAccess" class="form-control form-control-sm">
 						<option value="">All</option>
@@ -40,7 +40,7 @@
 					</select>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group-light">
 					<label>Type</label>
 					<select v-model="filterType" class="form-control form-control-sm">
 						<option value="">All</option>

@@ -1,5 +1,5 @@
 <template>
-	<div class="form-group row">
+	<div class="form-group-light row">
 		<div class="col-sm-6">
 			<input class="form-control" v-model="value" placeholder="Echo Value"/>
 		</div>

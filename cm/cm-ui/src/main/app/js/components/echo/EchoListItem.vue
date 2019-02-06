@@ -1,5 +1,5 @@
 <template>
-	<div class="form-group">
+	<div class="form-group-light">
 		<div class="row">
 			<div class="col">{{item.id}}: {{item.value}}</div>
 		</div>
