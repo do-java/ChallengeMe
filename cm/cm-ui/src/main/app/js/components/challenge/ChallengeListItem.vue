@@ -1,4 +1,5 @@
 <template>
+<div class="col-md-6 d-flex align-items-stretch">
 	<div class="card challenge-list-item mb-4 shadow">
 		<div class="card-body">
 			<div class="row mb-2">
@@ -24,6 +25,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </template>
 <script>

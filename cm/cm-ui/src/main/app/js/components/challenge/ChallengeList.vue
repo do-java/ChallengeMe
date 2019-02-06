@@ -1,5 +1,5 @@
 <template>
-	<div class="challenge-list">
+	<div class="challenge-list d-flex flex-wrap">
 		<challenge-list-item v-for="item in items" :items="items" :item="item" :key="item.id"/>
 	</div>
 </template>

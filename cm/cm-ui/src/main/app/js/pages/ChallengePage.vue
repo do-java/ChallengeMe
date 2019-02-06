@@ -13,7 +13,7 @@
 		<div class="col-md px-md-0">
 			<div class="container shadow mb-2 pt-3">
 			<div class="row mb-2">
-				<div class="col">
+				<div class="col-md-4">
 					<div class="input-group input-group-sm">
 						<input class="form-control" v-model="filterSearchQuery" placeholder="Quick search..">
 						<div class="input-group-append">
@@ -22,18 +22,20 @@
 					</div>
 
 				</div>
+
 				<div class="col-1">
 					<router-link class="btn btn-primary btn-sm float-right" to="/challenge/add"><i class="fas fa-plus"></i></router-link>
 				</div>
 			</div>
-
 			<div class="row">
-				<div class="col">
+				<div class="col-margin-0">
 					<challenge-list :items="filteredChallenges"></challenge-list>
 				</div>
+
 			</div>
 			</div>
 		</div>
+
    </div>
 </template>
 
