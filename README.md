@@ -54,3 +54,12 @@ cm $ java -Dspring.profiles.active=production -jar cm-app/target/cm-app-1.0.0-SN
 ```
 
 
+### Deploy to Docker
+
+```
+# persistence.properties/spring.datasource.url=jdbc:postgresql://cm-postgres:5432/cm
+
+# cm $ mvn clean install
+# cm $ docker build -f cm-deploy/docker/Dockerfile -t cm-app .
+# cm $ docker-compose -f cm-deploy/docker/docker-compose.yml up
+```

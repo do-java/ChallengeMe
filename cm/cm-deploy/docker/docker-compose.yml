@@ -1,0 +1,26 @@
+version: '3'
+services:
+  cm-app:
+    image: cm-app
+    ports:
+      - 8080:8080
+    depends_on:
+      - cm-postgres
+
+  cm-postgres:
+    image: postgres
+    ports:
+      - 5452:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cm
+
+
+# Usage:
+#
+# persistence.properties/spring.datasource.url=jdbc:postgresql://cm-postgres:5432/cm
+#
+# cm$ mvn clean install
+# cm$ docker build -f cm-deploy/docker/Dockerfile -t cm-app .
+# cm$ docker-compose -f cm-deploy/docker/docker-compose.yml up

@@ -12,6 +12,7 @@ ENTRYPOINT ["java", "-Dspring.profiles.active=production", "-jar", "cm-app.jar"]
 # V2: docker run -it --link cm-postgres:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 #
 # persistence.properties/spring.datasource.url=jdbc:postgresql://cm-postgres:5432/cm
-# mvn clean install
-# docker build -f Dockerfile -t cm-app .
-# docker run -it --name cm-app-container --link cm-postgres:cm-postgres -p 8080:8080 -d cm-app
+# cm$ mvn clean install
+# cm$ docker build -f cm-deploy/docker/Dockerfile -t cm-app .
+# V1: cm$ docker-compose -f cm-deploy/docker/docker-compose.yml up
+# V2: cm$ docker run -it --name cm-app-container --link cm-postgres:cm-postgres -p 8080:8080 -d cm-app
