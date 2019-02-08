@@ -1,4 +1,4 @@
-CREATE TABLE challenge_model(
+CREATE TABLE challenge (
  id SERIAL PRIMARY KEY,
  name VARCHAR (50) NOT NULL,
  type VARCHAR (50) NOT NULL,
