@@ -1,5 +1,22 @@
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900|Ovo');
+// @import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900|Ovo');
+@font-face {
+    font-family: 'Cinzel Decorative Bold';
+    src:
+		url('/fonts/CinzelDecorative-Bold.ttf') format('truetype'),
+}
+
+@font-face {
+    font-family: 'Cinzel Decorative Regular';
+    src:
+		url('/fonts/CinzelDecorative-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+    font-family: 'Ovo Regular';
+    src:
+		url('/fonts/Ovo-Regular.ttf') format('truetype'),
+}
 
 
 //
@@ -40,11 +57,11 @@ $theme-colors: (
 //
 
 .cm-logo {
-	font-family: 'Ovo', serif;
+	font-family: 'Ovo Regular', serif;
 
 	.cm-logo-me {
 		color: white;
-		font-family: 'Cinzel Decorative', cursive;
+		font-family: 'Cinzel Decorative Bold', cursive;
 		font-weight: bold;
 	}
 }
