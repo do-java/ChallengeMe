@@ -49,7 +49,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 			File uploadDir = new File(config.getFileStoragePath());
 
 			if (!uploadDir.exists()) {
-				uploadDir.mkdir();
+				uploadDir.mkdirs();
 			}
 
 			String uuidFile = UUID.randomUUID().toString();
@@ -73,7 +73,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 			File uploadDir = new File(config.getFileStoragePath());
 
 			if (!uploadDir.exists()) {
-				uploadDir.mkdir();
+				uploadDir.mkdirs();
 			}
 
 			byte[] decodedDataUrl = Base64.getDecoder().decode(base64DataUrl.getData());
