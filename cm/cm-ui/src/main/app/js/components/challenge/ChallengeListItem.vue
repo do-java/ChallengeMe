@@ -31,7 +31,6 @@
 <script>
    export default {
 		props: {
-		  items: Array,
 		  item: Object
 		},
 		data: function() {
