@@ -63,7 +63,7 @@ public class EchoServiceImpl implements EchoService {
 	@Override
 	public Echo updateEcho(Echo echo) {
 		Echo echoToUpdate = getEchoById(echo.getId());
-		Echo echoToUpdateCopy = new Echo(echoToUpdate);
+		Echo echoToUpdateCopy = echoToUpdate.toBuilder().build(); // Copy/clone, using lombok
 		BeanUtils.copyProperties(echo, echoToUpdate, "id");
 		Echo result = echoRepository.save(echoToUpdate);
 
