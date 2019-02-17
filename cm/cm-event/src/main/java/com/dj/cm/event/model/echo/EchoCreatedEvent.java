@@ -3,7 +3,11 @@ package com.dj.cm.event.model.echo;
 
 import com.dj.cm.event.model.common.EventType;
 import com.dj.cm.model.entity.Echo;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public class EchoCreatedEvent extends EchoEvent {
 
 	private final Echo value;
@@ -11,17 +15,5 @@ public class EchoCreatedEvent extends EchoEvent {
 	public EchoCreatedEvent(Echo value) {
 		super(EventType.CREATED);
 		this.value = value;
-	}
-
-	public Echo getValue() {
-		return value;
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("EchoCreatedEvent{");
-		sb.append("value=").append(value);
-		sb.append('}');
-		return sb.toString();
 	}
 }

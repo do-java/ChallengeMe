@@ -3,7 +3,11 @@ package com.dj.cm.event.model.echo;
 
 import com.dj.cm.event.model.common.EventType;
 import com.dj.cm.model.entity.Echo;
+import lombok.Getter;
+import lombok.ToString;
 
+@Getter
+@ToString
 public class EchoUpdatedEvent extends EchoEvent {
 
 	private final Echo oldValue;
@@ -13,22 +17,5 @@ public class EchoUpdatedEvent extends EchoEvent {
 		super(EventType.UPDATED);
 		this.oldValue = oldValue;
 		this.newValue = newValue;
-	}
-
-	public Echo getOldValue() {
-		return oldValue;
-	}
-
-	public Echo getNewValue() {
-		return newValue;
-	}
-
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("EchoUpdatedEvent{");
-		sb.append("oldValue=").append(oldValue);
-		sb.append(", newValue=").append(newValue);
-		sb.append('}');
-		return sb.toString();
 	}
 }
