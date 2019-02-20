@@ -4,6 +4,8 @@ import com.dj.cm.biz.service.exception.NotFoundBizException;
 import com.dj.cm.model.entity.UserModel;
 import com.dj.cm.biz.service.exception.AlreadyExistBizException;
 
+import java.util.Optional;
+
 /**
  * User Service.
  */
@@ -24,6 +26,15 @@ public interface UserService {
      * @throws NotFoundBizException if not found
      */
     UserModel getUserById(Long id);
+
+    /**
+     * Get user by email;
+     *
+     * @param email get by userName
+     * @return user
+     * @throws NotFoundBizException if not found
+     */
+    Optional<UserModel> getUserByEmail(String email);
 
     /**
      * Delete user.

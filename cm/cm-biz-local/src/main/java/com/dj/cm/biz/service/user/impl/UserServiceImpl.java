@@ -33,6 +33,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserModel> getUserByEmail(String email) {
+        Optional<UserModel> foundUser = Optional.of(userRepository.findUserModelByEmail(email));
+        if (!foundUser.isPresent()){
+            throw new NotFoundBizException("User with userName:" + email + " not found");
+        }
+
+        return foundUser;
+    }
+
+    @Override
     public void deleteUserById(Long id) {
         Optional<UserModel> foundUser = userRepository.findById(id);
         if (!foundUser.isPresent()){
