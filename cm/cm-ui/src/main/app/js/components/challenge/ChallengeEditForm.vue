@@ -132,6 +132,7 @@
 <script>
 	import Vue from 'vue';
 	import VueImageCropUpload from 'vue-image-crop-upload';
+	import { mapActions } from 'vuex';
 
    export default {
 		props: {
@@ -162,6 +163,7 @@
 			}
 		},
 		methods: {
+			...mapActions(['addAlert']),
 			createAsync: function() {
 				return new Promise((resolve, reject) => {
 					// Upload picture file
@@ -174,8 +176,10 @@
 							// Save challenge
 							this.restApi.save({}, this.challenge)
 								.then(result => {
+									this.addAlert({ class: 'alert-success', message: 'Challenge Created' });
 									result.json().then(data => resolve(data));
 								},	error => {
+									this.addAlert({ class: 'alert-danger', message: 'ERROR on Challenge Create. Cause: ' + JSON.stringify(error) });
 									reject(error);
 								});
 						}, error => {
@@ -195,12 +199,16 @@
 							// Update challenge
 							this.restApi.update({id: this.challenge.id}, this.challenge)
 								.then(result => {
+									this.addAlert({ class: 'alert-success', message: 'Challenge Updated' });
 									result.json().then(data => resolve(data));
 								},	error => {
+									this.addAlert({ class: 'alert-danger', message: 'ERROR on Challenge Update. Cause: ' + JSON.stringify(error) });
 									reject(error);
 								});
 						}, error => {
-							console.log("Unable to upload picture file: " + this.file + " error: " + error);
+							var msg = "Unable to upload picture file: " + this.file + " error: " + JSON.stringify(error);
+							console.log(msg);
+							this.addAlert({ class: 'alert-danger', message: msg });
 						});
 				});
 			},
@@ -270,7 +278,6 @@
 				this.challenge.pictureFilename = null;
 				this.clearPictureDataUrl();
 			},
-
 		},
 
    }

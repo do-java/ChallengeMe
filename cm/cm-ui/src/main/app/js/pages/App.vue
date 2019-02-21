@@ -4,6 +4,7 @@
 		   <div class="col-xl-2"/>
 		   <div class="col-xl-8">
 			   <navigation></navigation>
+			   <alerts></alerts>
 			   <router-view/>
 		   </div>
 		   <div class="col-xl-2"/>
@@ -14,10 +15,12 @@
 
 <script>
    import Navigation from 'components/common/Navigation.vue'
+   import Alerts from 'components/common/Alerts.vue'
 
    export default {
    		components: {
-			Navigation
+			Navigation,
+			Alerts
 		},
    }
 </script>

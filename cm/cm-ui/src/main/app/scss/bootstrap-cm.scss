@@ -71,6 +71,10 @@ $theme-colors: (
 	background-size: 100% 100%;
 }
 
+.cm-alerts > .alert {
+	z-index: $zindex-popover;
+}
+
 .challenge-list > .challenge-list-item {
  	transition: transform .2s; // Animation
 
