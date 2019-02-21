@@ -17,6 +17,11 @@ export default new Vuex.Store({
 			access: '',
 			type: ''
 		}
+  	},
+  	alert: {
+  		alerts: [],
+  		displayMills: 5000,
+  		enabled: true
   	}
   },
   mutations: {
@@ -40,6 +45,28 @@ export default new Vuex.Store({
 			state.challenge.filter.type = payload.type;
 	   }
 
+    },
+    addAlert(state, alert) {
+    	state.alert.alerts.push(alert)
+    },
+    shiftAlert(state) {
+    	state.alert.alerts.shift();
     }
+
+  },
+  actions: {
+	/**
+	* Usage: this.$store.dispatch('addAlert', { class: 'alert-success', message: 'Alert Message' });
+	*/
+  	addAlert({ commit, state }, alert) {
+		if (!state.alert.enabled) {
+			return;
+		}
+
+		commit('addAlert', alert);
+		setTimeout(() => {
+			commit('shiftAlert');
+		}, state.alert.displayMills);
+	},
   }
 })
