@@ -20,7 +20,8 @@
 
     <!-- Properties -->
     <properties>
-
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <modules>
@@ -30,6 +31,8 @@
         <module>cm-biz</module>
         <module>cm-event</module>
         <module>cm-biz-local</module>
+        <module>cm-biz-remote-server</module>
+        <module>cm-biz-remote-client</module>
         <module>cm-rest</module>
         <module>cm-ui</module>
         <module>cm-app</module>
