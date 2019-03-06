@@ -63,3 +63,9 @@ cm $ java -Dspring.profiles.active=production -jar cm-app/target/cm-app-1.0.0-SN
 # cm $ docker build -f cm-deploy/docker/Dockerfile -t cm-app .
 # cm $ docker-compose -f cm-deploy/docker/docker-compose.yml up
 ```
+
+### Remote Biz Mode
+ 
+1\. Ensure BizRemoteClientConfig and BizRemoteConfig correct
+
+2\. Replace cm-biz/pom.xml/dependencies/dependency/cm-biz-local with cm-biz-remote-client

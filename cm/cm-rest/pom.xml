@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.dj.cm</groupId>
-            <artifactId>cm-biz-local</artifactId>
+            <artifactId>cm-biz-local</artifactId> <!-- Set to cm-biz-remote-client for remoting -->
             <version>${project.version}</version>
         </dependency>
 
