@@ -22,11 +22,25 @@ connect()
 Vue.use(VueResource)
 Vue.use(Datetime)
 
-
+Vue.http.interceptors.push((request, next) => {
+    if (localStorage.getItem('userToken')) {
+        request.headers.set('Authorization', localStorage.getItem('userToken'));
+        request.headers.set('Accept', 'application/json');
+    }
+    next();
+})
 
 new Vue({
 	store,
 	router,
     el: '#app',
     render: h => h(App),
+    mounted: () => {
+        if (localStorage.getItem('userToken')) {
+            Vue.http.post('/rest/public/user/login', {token: localStorage.getItem('userToken')})
+                .then(result => {
+                    store.commit('userLogin', {user: result.body.user});
+                });
+        }
+    }
 });

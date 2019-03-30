@@ -17,6 +17,10 @@ export default new Vuex.Store({
 			access: '',
 			type: ''
 		}
+  	},
+  	user: {
+  	    email: '',
+  	    userName: ''
   	}
   },
   mutations: {
@@ -40,6 +44,14 @@ export default new Vuex.Store({
 			state.challenge.filter.type = payload.type;
 	   }
 
+    },
+    userLogin(state, data) {
+        if (data.user != 'undefined') {
+            state.user = data.user;
+        }
+    },
+    userLogout(state) {
+        state.user = {email: ''};
     }
   }
 })

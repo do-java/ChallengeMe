@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserModel> getUserByEmail(String email) {
-        Optional<UserModel> foundUser = Optional.of(userRepository.findUserModelByEmail(email));
-        if (!foundUser.isPresent()){
-            throw new NotFoundBizException("User with userName:" + email + " not found");
+        UserModel foundUser = userRepository.findUserModelByEmail(email);
+        if (foundUser == null){
+            throw new NotFoundBizException("User with userName:" + email + " not found! Create an account!");
         }
 
-        return foundUser;
+        return Optional.of(foundUser);
     }
 
     @Override

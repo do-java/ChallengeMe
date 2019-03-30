@@ -1,19 +1,20 @@
 package com.dj.cm.model.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
+@EntityListeners(AuditingEntityListener.class)
 public class UserModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +30,8 @@ public class UserModel implements Serializable {
 
     private boolean deleted;
 
-    private Date firstLogin;
+    @CreatedDate
+    private LocalDateTime firstLogin;
 
-    private Date lastLogin;
+    private LocalDateTime lastLogin;
 }

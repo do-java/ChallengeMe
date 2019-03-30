@@ -1,0 +1,1 @@
+ALTER TABLE user_model ALTER COLUMN user_name DROP NOT NULL;

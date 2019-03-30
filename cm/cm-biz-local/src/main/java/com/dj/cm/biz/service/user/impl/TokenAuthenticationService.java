@@ -4,39 +4,38 @@ import com.dj.cm.biz.service.token.TokenService;
 import com.dj.cm.biz.service.user.UserAuthenticationService;
 import com.dj.cm.biz.service.user.UserService;
 import com.dj.cm.model.entity.UserModel;
-import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class TokenAuthenticationService implements UserAuthenticationService {
     @Autowired
-    private TokenService tokens;
+    private TokenService tokenService;
     @Autowired
-    private UserService users;
+    private UserService userService;
 
     @Override
     public Optional<String> login(String email, String password) {
-        System.out.println(email + "   " + password);
-        return users
+        return userService
                 .getUserByEmail(email)
                 .filter(user -> Objects.equals(password, user.getPassword()))
-                .map(user -> tokens.expiring(ImmutableMap.of("email", email)));
+                .map(user -> tokenService.generateExpiringToken(Collections.singletonMap("email", email)));
     }
 
     @Override
     public Optional<UserModel> findByToken(String token) {
         return Optional
-                .of(tokens.verify(token))
+                .of(tokenService.verifyToken(token))
                 .map(map -> map.get("email"))
-                .flatMap(users::getUserByEmail);
+                .flatMap(userService::getUserByEmail);
     }
 
     @Override
     public void logout(UserModel user) {
-        // Nothing to doy
+        // Nothing to do
     }
 }

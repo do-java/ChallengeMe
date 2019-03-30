@@ -33,6 +33,7 @@
         <module>cm-rest</module>
         <module>cm-ui</module>
         <module>cm-app</module>
+        <module>cm-security</module>
     </modules>
 
     <dependencies>
@@ -63,11 +64,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- Misc -->
