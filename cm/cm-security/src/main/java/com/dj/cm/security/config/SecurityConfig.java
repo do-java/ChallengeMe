@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
@@ -17,11 +16,11 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
-            new AntPathRequestMatcher("/rest/public/**")
+    private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
+            new AntPathRequestMatcher("/rest/challenges/**"),
+            new AntPathRequestMatcher("/rest/echos/**"),
+            new AntPathRequestMatcher("/rest/user/**")
     );
-
-    private static final RequestMatcher PROTECTED_URLS = new NegatedRequestMatcher(PUBLIC_URLS);
 
     @Autowired
     TokenAuthenticationManager tokenAuthenticationManager;
@@ -44,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public TokenAuthenticationFilter restTokenAuthenticationFilter() {
-        TokenAuthenticationFilter restTokenAuthenticationFilter = new TokenAuthenticationFilter(PUBLIC_URLS);
+        TokenAuthenticationFilter restTokenAuthenticationFilter = new TokenAuthenticationFilter(PROTECTED_URLS);
         restTokenAuthenticationFilter.setAuthenticationManager(tokenAuthenticationManager);
         return restTokenAuthenticationFilter;
     }

@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -38,11 +39,12 @@ public class TokenAuthenticationManager implements AuthenticationManager {
 
         Map<String, String> claims = tokenService.verifyToken(token);
 
-        if (claims.get("TOKEN_EXPIRATION_DATE") == null) {
+        if (claims.get("exp") == null) {
             throw new AuthenticationServiceException("Invalid token");
         }
 
-        Date expiredDate = new Date(claims.get("TOKEN_EXPIRATION_DATE"));
+        Date expiredDate = Date.from(Instant.ofEpochSecond(Long.parseLong(claims.get("exp"))));
+
         if (expiredDate.after(new Date())) {
             return buildTokenAuthentication(authentication, claims);
         } else {
